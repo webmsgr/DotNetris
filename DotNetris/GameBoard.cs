@@ -61,8 +61,8 @@ namespace DotNetris
             // 6 7 8
             for (int row = bottom; row < bottom + rows; row++)
             {
-                Buffer.BlockCopy(board, 0, board, row*Width, row*Width);
-                Array.Clear(board, 0, Width);
+                Buffer.BlockCopy(board, 0, board, row*Width, row*Width); // Copy rows down (might not work yet, untested)
+                Array.Clear(board, 0, Width); // clear top row
             }
             
         }
