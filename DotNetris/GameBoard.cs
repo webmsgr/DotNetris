@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace DotNetris
 {
-    
+    /// <summary>
+    /// Represents a single game board
+    /// </summary>
     public class GameBoard
     {
         public const int Width = 9;
