@@ -41,6 +41,23 @@ public class Game
     public Inputs Inputs { get; set; }
 
     /// <summary>
+    /// Sets one or more input flags. Call this in your keydown event handler
+    /// </summary>
+    /// <param name="input">Flags to set</param>
+    public void SetInput(Inputs input)
+    {
+        this.Inputs |= input;
+    }
+    /// <summary>
+    /// Clears one or more input flags. Call this in your keyup event handler
+    /// </summary>
+    /// <param name="input">Flags to clear</param>
+    public void ClearInput(Inputs input)
+    {
+        this.Inputs &= ~input;
+    }
+    
+    /// <summary>
     /// How many ticks per second the game should run at for real-time play. If an operation takes X seconds, it takes X * Tickrate Ticks.
     /// </summary>
     public const int Tickrate = 30;
