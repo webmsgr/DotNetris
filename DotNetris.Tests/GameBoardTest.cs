@@ -17,23 +17,23 @@ public class GameBoardTest
     }
 
     [TestMethod]
-    [ExpectedException(typeof(IndexOutOfRangeException))]
+    [ExpectedException(typeof(ArgumentException), $"X outside valid range. Expected [0..9), found 128")]
     public void Set_InvalidPositionPositiveX_ThrowsException()
     {
         GameBoard gameBoard = new GameBoard();
         // Set a color outside the board
-        gameBoard.Set(GameBoard.Width + 1, 0, Color.Red);
+        gameBoard.Set(128, 0, Color.Red);
     }
     [TestMethod]
-    [ExpectedException(typeof(IndexOutOfRangeException))]
+    [ExpectedException(typeof(ArgumentException), $"Y outside valid range. Expected [0..19), found 128")]
     public void Set_InvalidPositionPositiveY_ThrowsException()
     {
         GameBoard gameBoard = new GameBoard();
         // Set a color outside the board
-        gameBoard.Set(0, GameBoard.Height + 1, Color.Red);
+        gameBoard.Set(0, 128, Color.Red);
     }
     [TestMethod]
-    [ExpectedException(typeof(IndexOutOfRangeException))]
+    [ExpectedException(typeof(ArgumentException), $"X outside valid range. Expected [0..9), found -1")]
     public void Set_InvalidPositionNegativeX_ThrowsException()
     {
         GameBoard gameBoard = new GameBoard();
@@ -41,7 +41,7 @@ public class GameBoardTest
         gameBoard.Set(-1, 0, Color.Red);
     }
     [TestMethod]
-    [ExpectedException(typeof(IndexOutOfRangeException))]
+    [ExpectedException(typeof(ArgumentException), $"Y outside valid range. Expected [0..19), found -1")]
     public void Set_InvalidPositionNegativeY_ThrowsException()
     {
         GameBoard gameBoard = new GameBoard();
@@ -50,23 +50,23 @@ public class GameBoardTest
     }
     
     [TestMethod]
-    [ExpectedException(typeof(IndexOutOfRangeException))]
+    [ExpectedException(typeof(ArgumentException), $"X outside valid range. Expected [0..9), found 128")]
     public void Get_InvalidPositionPositiveX_ThrowsException()
     {
         GameBoard gameBoard = new GameBoard();
         // Get a color outside the board
-        gameBoard.Get(GameBoard.Width + 1, 0);
+        gameBoard.Get(128, 0);
     }
     [TestMethod]
-    [ExpectedException(typeof(IndexOutOfRangeException))]
+    [ExpectedException(typeof(ArgumentException), $"Y outside valid range. Expected [0..19), found 128")]
     public void Get_InvalidPositionPositiveY_ThrowsException()
     {
         GameBoard gameBoard = new GameBoard();
         // Get a color outside the board
-        gameBoard.Get(0, GameBoard.Height + 1);
+        gameBoard.Get(0, 128);
     }
     [TestMethod]
-    [ExpectedException(typeof(IndexOutOfRangeException))]
+    [ExpectedException(typeof(ArgumentException), $"X outside valid range. Expected [0..9), found -1")]
     public void Get_InvalidPositionNegativeX_ThrowsException()
     {
         GameBoard gameBoard = new GameBoard();
@@ -74,7 +74,7 @@ public class GameBoardTest
         gameBoard.Get(-1, 0);
     }
     [TestMethod]
-    [ExpectedException(typeof(IndexOutOfRangeException))]
+    [ExpectedException(typeof(ArgumentException), $"Y outside valid range. Expected [0..19), found -1")]
     public void Get_InvalidPositionNegativeY_ThrowsException()
     {
         GameBoard gameBoard = new GameBoard();
