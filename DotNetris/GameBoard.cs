@@ -13,7 +13,25 @@ namespace DotNetris
     {
         public const int Width = 9;
         public const int Height = 19;
+        /// <summary>
+        /// Checks if X/Y values passed in are valid.
+        /// </summary>
+        /// <param name="x">X cord to check</param>
+        /// <param name="y">Y cord to check</param>
+        /// <exception cref="ArgumentException">If either X/Y are invalid</exception>
+        private static void CheckCords(int x, int y)
+        {
+            if (x < 0 || x >= Width)
+            {
+                throw new ArgumentException($"X outside valid range. Expected [0..{Width}), found {x}");
+            }
 
+            if (y < 0 || y >= Height)
+            {
+                throw new ArgumentException($"Y outside valid range. Expected [0..{Height}), found {y}");
+            }
+        }
+        
         private Color[] board = new Color[Width*Height];
         /// <summary>
         /// Get a color at the specified position
@@ -21,15 +39,13 @@ namespace DotNetris
         /// <param name="x">The X position</param>
         /// <param name="y">The Y position</param>
         /// <returns>The color at the specified position</returns>
-        /// <exception cref="IndexOutOfRangeException">X/Y value outside board</exception>
+        /// <exception cref="ArgumentException">X/Y value outside board</exception>
 
         public Color Get(int x, int y)
         {
+            CheckCords(x, y);
             int index = y * Width + x;
-            if (index > board.Length || index < 0)
-            {
-                throw new IndexOutOfRangeException();
-            }
+            
             return board[index];
         }
         /// <summary>
@@ -38,15 +54,13 @@ namespace DotNetris
         /// <param name="x">X position to set</param>
         /// <param name="y">Y position to set</param>
         /// <param name="value">Value to set</param>
-        /// <exception cref="IndexOutOfRangeException">X/Y value outside board</exception>
+        /// <exception cref="ArgumentException">X/Y value outside board</exception>
 
         public void Set(int x, int y, Color value)
         {
+            CheckCords(x, y);
             int index = y * Width + x;
-            if (index > board.Length || index < 0)
-            {
-                throw new IndexOutOfRangeException();
-            }
+            
             board[index] = value;
         }
         /// <summary>
