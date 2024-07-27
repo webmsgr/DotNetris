@@ -1,0 +1,27 @@
+﻿syntax = "proto3";
+
+message LoginSuccess {
+  
+}
+
+message LoginFailure {
+  string message = 1;
+}
+
+message RegisterSuccess {
+  
+}
+
+message RegisterFailure {
+  string message = 1;
+}
+
+message ServerToClientMessage {
+  oneof packet {
+    LoginSuccess loginSuccess = 1;
+    LoginFailure loginFailure = 2;
+    RegisterSuccess registerSuccess = 3;
+    RegisterFailure registerFailure = 4;
+    
+  }
+}
