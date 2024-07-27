@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             DotNetrisLbl = new Label();
-            MulitPlayerBtn = new Button();
+            MultiPlayerBtn = new Button();
             SinglePlayerBtn = new Button();
             SettingsBtn = new Button();
             ExitBtn = new Button();
+            LogInRegBtn = new Button();
             SuspendLayout();
             // 
             // DotNetrisLbl
@@ -46,20 +47,20 @@
             DotNetrisLbl.TextAlign = ContentAlignment.MiddleCenter;
             DotNetrisLbl.UseMnemonic = false;
             // 
-            // MulitPlayerBtn
+            // MultiPlayerBtn
             // 
-            MulitPlayerBtn.Font = new Font("Tahoma", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            MulitPlayerBtn.Location = new Point(283, 152);
-            MulitPlayerBtn.Name = "MulitPlayerBtn";
-            MulitPlayerBtn.Size = new Size(211, 33);
-            MulitPlayerBtn.TabIndex = 1;
-            MulitPlayerBtn.Text = "MULTIPLAYER ";
-            MulitPlayerBtn.UseVisualStyleBackColor = true;
+            MultiPlayerBtn.Font = new Font("Tahoma", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            MultiPlayerBtn.Location = new Point(283, 141);
+            MultiPlayerBtn.Name = "MultiPlayerBtn";
+            MultiPlayerBtn.Size = new Size(211, 33);
+            MultiPlayerBtn.TabIndex = 1;
+            MultiPlayerBtn.Text = "MULTIPLAYER ";
+            MultiPlayerBtn.UseVisualStyleBackColor = true;
             // 
             // SinglePlayerBtn
             // 
             SinglePlayerBtn.Font = new Font("Tahoma", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            SinglePlayerBtn.Location = new Point(283, 205);
+            SinglePlayerBtn.Location = new Point(283, 191);
             SinglePlayerBtn.Name = "SinglePlayerBtn";
             SinglePlayerBtn.Size = new Size(211, 39);
             SinglePlayerBtn.TabIndex = 2;
@@ -69,7 +70,7 @@
             // SettingsBtn
             // 
             SettingsBtn.Font = new Font("Tahoma", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            SettingsBtn.Location = new Point(283, 264);
+            SettingsBtn.Location = new Point(283, 247);
             SettingsBtn.Name = "SettingsBtn";
             SettingsBtn.Size = new Size(211, 43);
             SettingsBtn.TabIndex = 3;
@@ -79,22 +80,33 @@
             // ExitBtn
             // 
             ExitBtn.Font = new Font("Tahoma", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            ExitBtn.Location = new Point(283, 331);
+            ExitBtn.Location = new Point(283, 369);
             ExitBtn.Name = "ExitBtn";
             ExitBtn.Size = new Size(211, 47);
             ExitBtn.TabIndex = 4;
             ExitBtn.Text = "EXIT";
             ExitBtn.UseVisualStyleBackColor = true;
             // 
+            // LogInRegBtn
+            // 
+            LogInRegBtn.Font = new Font("Tahoma", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LogInRegBtn.Location = new Point(283, 306);
+            LogInRegBtn.Name = "LogInRegBtn";
+            LogInRegBtn.Size = new Size(211, 46);
+            LogInRegBtn.TabIndex = 5;
+            LogInRegBtn.Text = "LOG IN/REGESTER";
+            LogInRegBtn.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(LogInRegBtn);
             Controls.Add(ExitBtn);
             Controls.Add(SettingsBtn);
             Controls.Add(SinglePlayerBtn);
-            Controls.Add(MulitPlayerBtn);
+            Controls.Add(MultiPlayerBtn);
             Controls.Add(DotNetrisLbl);
             Name = "Form1";
             Text = "Form1";
@@ -104,9 +116,10 @@
         #endregion
 
         private Label DotNetrisLbl;
-        private Button MulitPlayerBtn;
+        private Button MultiPlayerBtn;
         private Button SinglePlayerBtn;
         private Button SettingsBtn;
         private Button ExitBtn;
+        private Button LogInRegBtn;
     }
 }
