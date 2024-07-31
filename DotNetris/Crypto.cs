@@ -12,8 +12,8 @@ public static class Crypto
     public static string HashPassword(string password)
     {
         byte[] bytePassword = Encoding.UTF8.GetBytes(password);
-        byte[] output = new byte[Geralt.Argon2id.MaxHashSize];
-        Geralt.Argon2id.ComputeHash(output.AsSpan(), bytePassword.AsSpan(),3, 67108864); //adjust as needed
+        Span<byte> output = stackalloc byte[Geralt.Argon2id.MaxHashSize]; // stackalloc my beloved
+        Geralt.Argon2id.ComputeHash(output, bytePassword.AsSpan(),3, 67108864); //adjust as needed
         return Encoding.UTF8.GetString(output);
     }
     /// <summary>
