@@ -64,23 +64,38 @@ namespace DotNetris
             board[index] = value;
         }
         /// <summary>
-        /// Clear rows, moving rows above them down.
+        /// Clear a single row, moving rows above it down
         /// </summary>
-        /// <param name="rows">Amount of rows to clear</param>
-        /// <param name="bottom">Bottommost row</param>
+        /// <param name="row">Row to clear</param>
 
-        public void ClearLines(int rows, int bottom)
+        public void ClearLine(int row)
         {
-            // TODO: please test
-            // 0 1 2
-            // 3 4 5
-            // 6 7 8
-            for (int row = bottom; row < bottom + rows; row++)
+            Buffer.BlockCopy(board, 0, board, Width, row*Width);
+            Array.Clear(board, 0, Width); // clear top row
+        }
+        /// <summary>
+        /// Clear rowCount rows starting from the bottom row
+        /// </summary>
+        /// <param name="bottom">Bottom row of the clear</param>
+        /// <param name="rowCount">Rows to clear</param>
+        public void ClearLines(int bottom, int rowCount)
+        {
+            while (rowCount > 0)
             {
-                Buffer.BlockCopy(board, 0, board, row*Width, row*Width); // Copy rows down (might not work yet, untested)
-                Array.Clear(board, 0, Width); // clear top row
+                ClearLine(bottom);
+                rowCount--;
             }
-            
+        }
+        
+        /// <summary>
+        /// Returns a single row of the board as a span
+        /// </summary>
+        /// <param name="row">Row to return</param>
+        /// <returns>The specified row as a span</returns>
+        public Span<Color> GetRow(int row)
+        {
+            CheckCords(0, row);
+            return board.AsSpan(row * Width, Width);
         }
     }
 }
