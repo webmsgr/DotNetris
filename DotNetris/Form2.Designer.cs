@@ -29,26 +29,26 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MultiplayerForm));
-            DotNetrisLbl = new Label();
+            DotNetriSMutliLbl = new Label();
             CreateGameBtn = new Button();
             JoinGameBtn = new Button();
             label1 = new Label();
             label2 = new Label();
             SuspendLayout();
             // 
-            // DotNetrisLbl
+            // DotNetriSMutliLbl
             // 
-            DotNetrisLbl.BackColor = System.Drawing.Color.Transparent;
-            DotNetrisLbl.Font = new Font("Comic Sans MS", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            DotNetrisLbl.ForeColor = System.Drawing.Color.Red;
-            DotNetrisLbl.Location = new Point(144, 47);
-            DotNetrisLbl.Name = "DotNetrisLbl";
-            DotNetrisLbl.Size = new Size(453, 65);
-            DotNetrisLbl.TabIndex = 4;
-            DotNetrisLbl.Text = "DOTNETRIS";
-            DotNetrisLbl.TextAlign = ContentAlignment.MiddleCenter;
-            DotNetrisLbl.UseMnemonic = false;
-            DotNetrisLbl.Click += DotNetrisLbl_Click;
+            DotNetriSMutliLbl.BackColor = System.Drawing.Color.Transparent;
+            DotNetriSMutliLbl.Font = new Font("Comic Sans MS", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            DotNetriSMutliLbl.ForeColor = System.Drawing.Color.Red;
+            DotNetriSMutliLbl.Location = new Point(156, 26);
+            DotNetriSMutliLbl.Name = "DotNetriSMutliLbl";
+            DotNetriSMutliLbl.Size = new Size(460, 133);
+            DotNetriSMutliLbl.TabIndex = 4;
+            DotNetriSMutliLbl.Text = "DOTNETRIS MULTIPLAYER";
+            DotNetriSMutliLbl.TextAlign = ContentAlignment.MiddleCenter;
+            DotNetriSMutliLbl.UseMnemonic = false;
+            DotNetriSMutliLbl.Click += DotNetrisLbl_Click;
             // 
             // CreateGameBtn
             // 
@@ -56,7 +56,7 @@
             CreateGameBtn.BackColor = System.Drawing.Color.Black;
             CreateGameBtn.Font = new Font("Comic Sans MS", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             CreateGameBtn.ForeColor = System.Drawing.Color.FromArgb(255, 128, 0);
-            CreateGameBtn.Location = new Point(156, 161);
+            CreateGameBtn.Location = new Point(156, 188);
             CreateGameBtn.Name = "CreateGameBtn";
             CreateGameBtn.Size = new Size(215, 64);
             CreateGameBtn.TabIndex = 6;
@@ -68,7 +68,7 @@
             JoinGameBtn.BackColor = System.Drawing.Color.Black;
             JoinGameBtn.Font = new Font("Comic Sans MS", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             JoinGameBtn.ForeColor = System.Drawing.Color.Yellow;
-            JoinGameBtn.Location = new Point(401, 161);
+            JoinGameBtn.Location = new Point(401, 188);
             JoinGameBtn.Name = "JoinGameBtn";
             JoinGameBtn.Size = new Size(215, 64);
             JoinGameBtn.TabIndex = 7;
@@ -80,7 +80,7 @@
             label1.BackColor = System.Drawing.Color.Transparent;
             label1.Font = new Font("Comic Sans MS", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = System.Drawing.Color.Lime;
-            label1.Location = new Point(156, 269);
+            label1.Location = new Point(156, 306);
             label1.Name = "label1";
             label1.Size = new Size(215, 79);
             label1.TabIndex = 8;
@@ -92,7 +92,7 @@
             label2.BackColor = System.Drawing.Color.Transparent;
             label2.Font = new Font("Comic Sans MS", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = System.Drawing.Color.Cyan;
-            label2.Location = new Point(401, 269);
+            label2.Location = new Point(401, 306);
             label2.Name = "label2";
             label2.Size = new Size(215, 79);
             label2.TabIndex = 9;
@@ -103,13 +103,14 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Control;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(800, 450);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(JoinGameBtn);
             Controls.Add(CreateGameBtn);
-            Controls.Add(DotNetrisLbl);
+            Controls.Add(DotNetriSMutliLbl);
             Name = "MultiplayerForm";
             Text = "Multiplayer";
             ResumeLayout(false);
@@ -117,7 +118,7 @@
 
         #endregion
 
-        private Label DotNetrisLbl;
+        private Label DotNetriSMutliLbl;
         private Button CreateGameBtn;
         private Button JoinGameBtn;
         private Label label1;
