@@ -19,7 +19,6 @@ public class ServerConfig
 
     public readonly byte[]? password;
 
-
     public void Validate()
     {
         if (security == SecurityLevel.TLS && certificate == null)

@@ -4,6 +4,11 @@ namespace DotNetris;
 
 public static class Crypto
 {
+
+    public const int Argon2IdIterations = 3;
+    public const int Argon2IdMemorySize = 67108864;
+    
+    
     /// <summary>
     /// Securely hash a password with Argon2id
     /// </summary>
@@ -12,8 +17,8 @@ public static class Crypto
     public static string HashPassword(string password)
     {
         byte[] bytePassword = Encoding.UTF8.GetBytes(password);
-        Span<byte> output = stackalloc byte[Geralt.Argon2id.MaxHashSize]; // stackalloc my beloved
-        Geralt.Argon2id.ComputeHash(output, bytePassword.AsSpan(),3, 67108864); //adjust as needed
+        Span<byte> output = stackalloc byte[Geralt.Argon2id.MaxHashSize]; 
+        Geralt.Argon2id.ComputeHash(output, bytePassword.AsSpan(), Argon2IdIterations, Argon2IdMemorySize); 
         return Encoding.UTF8.GetString(output);
     }
     /// <summary>

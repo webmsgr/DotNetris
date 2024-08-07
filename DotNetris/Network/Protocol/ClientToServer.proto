@@ -10,9 +10,14 @@ message Register {
   string password = 2;
 }
 
+message Ping {
+  bytes data = 1;
+}
+
 message ClientToServerMessage {
   oneof packet {
     Login login = 1;
     Register register = 2;
+    Ping ping = 3;
   }
 }

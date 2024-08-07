@@ -16,12 +16,17 @@ message RegisterFailure {
   string message = 1;
 }
 
+
+message Pong {
+  bytes data = 1;
+}
+
 message ServerToClientMessage {
   oneof packet {
     LoginSuccess loginSuccess = 1;
     LoginFailure loginFailure = 2;
     RegisterSuccess registerSuccess = 3;
     RegisterFailure registerFailure = 4;
-    
+    Pong pong = 5;
   }
 }
