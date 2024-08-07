@@ -32,7 +32,6 @@
             DotNetrisLbl = new Label();
             MultiPlayerBtn = new Button();
             SinglePlayerBtn = new Button();
-            SettingsBtn = new Button();
             ExitBtn = new Button();
             LogInRegBtn = new Button();
             SettingBtn = new Button();
@@ -70,31 +69,19 @@
             SinglePlayerBtn.BackColor = System.Drawing.Color.Black;
             SinglePlayerBtn.Font = new Font("Comic Sans MS", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             SinglePlayerBtn.ForeColor = System.Drawing.Color.Yellow;
-            SinglePlayerBtn.Location = new Point(266, 188);
+            SinglePlayerBtn.Location = new Point(266, 198);
             SinglePlayerBtn.Name = "SinglePlayerBtn";
             SinglePlayerBtn.Size = new Size(211, 39);
             SinglePlayerBtn.TabIndex = 2;
             SinglePlayerBtn.Text = "SINGLE PLAYER";
             SinglePlayerBtn.UseVisualStyleBackColor = false;
             // 
-            // SettingsBtn
-            // 
-            SettingsBtn.BackColor = System.Drawing.Color.Black;
-            SettingsBtn.Font = new Font("Comic Sans MS", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            SettingsBtn.ForeColor = System.Drawing.Color.Lime;
-            SettingsBtn.Location = new Point(266, 244);
-            SettingsBtn.Name = "SettingsBtn";
-            SettingsBtn.Size = new Size(211, 43);
-            SettingsBtn.TabIndex = 3;
-            SettingsBtn.Text = "SETTINGS";
-            SettingsBtn.UseVisualStyleBackColor = false;
-            // 
             // ExitBtn
             // 
             ExitBtn.BackColor = System.Drawing.Color.Black;
             ExitBtn.Font = new Font("Comic Sans MS", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             ExitBtn.ForeColor = System.Drawing.Color.FromArgb(128, 128, 255);
-            ExitBtn.Location = new Point(266, 377);
+            ExitBtn.Location = new Point(266, 350);
             ExitBtn.Name = "ExitBtn";
             ExitBtn.Size = new Size(211, 47);
             ExitBtn.TabIndex = 4;
@@ -106,7 +93,7 @@
             LogInRegBtn.BackColor = System.Drawing.Color.Black;
             LogInRegBtn.Font = new Font("Comic Sans MS", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LogInRegBtn.ForeColor = System.Drawing.Color.Cyan;
-            LogInRegBtn.Location = new Point(266, 307);
+            LogInRegBtn.Location = new Point(266, 270);
             LogInRegBtn.Name = "LogInRegBtn";
             LogInRegBtn.Size = new Size(211, 46);
             LogInRegBtn.TabIndex = 5;
@@ -147,7 +134,6 @@
             Controls.Add(SettingBtn);
             Controls.Add(LogInRegBtn);
             Controls.Add(ExitBtn);
-            Controls.Add(SettingsBtn);
             Controls.Add(SinglePlayerBtn);
             Controls.Add(MultiPlayerBtn);
             Controls.Add(DotNetrisLbl);
@@ -161,7 +147,6 @@
         private Label DotNetrisLbl;
         private Button MultiPlayerBtn;
         private Button SinglePlayerBtn;
-        private Button SettingsBtn;
         private Button ExitBtn;
         private Button LogInRegBtn;
         private Button SettingBtn;

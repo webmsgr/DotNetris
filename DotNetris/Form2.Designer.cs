@@ -45,7 +45,7 @@
             DotNetriSMutliLbl.Name = "DotNetriSMutliLbl";
             DotNetriSMutliLbl.Size = new Size(460, 133);
             DotNetriSMutliLbl.TabIndex = 4;
-            DotNetriSMutliLbl.Text = "DOTNETRIS MULTIPLAYER";
+            DotNetriSMutliLbl.Text = "DOTNETRIS:  MULTIPLAYER MODE";
             DotNetriSMutliLbl.TextAlign = ContentAlignment.MiddleCenter;
             DotNetriSMutliLbl.UseMnemonic = false;
             DotNetriSMutliLbl.Click += DotNetrisLbl_Click;

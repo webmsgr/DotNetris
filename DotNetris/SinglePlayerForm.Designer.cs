@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SinglePlayerSettingsForm));
-            DotNetrisLbl = new Label();
+            DotNetrisSinglePlayerLbl = new Label();
             EasySettingBtn = new Button();
             NormalSettingsBtn = new Button();
             HardSettingsBtn = new Button();
@@ -38,19 +38,19 @@
             HardModeDescriptLbl = new Label();
             SuspendLayout();
             // 
-            // DotNetrisLbl
+            // DotNetrisSinglePlayerLbl
             // 
-            DotNetrisLbl.BackColor = System.Drawing.Color.Transparent;
-            DotNetrisLbl.Font = new Font("Comic Sans MS", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            DotNetrisLbl.ForeColor = System.Drawing.Color.White;
-            DotNetrisLbl.Location = new Point(160, 56);
-            DotNetrisLbl.Name = "DotNetrisLbl";
-            DotNetrisLbl.Size = new Size(453, 65);
-            DotNetrisLbl.TabIndex = 5;
-            DotNetrisLbl.Text = "DOTNETRIS";
-            DotNetrisLbl.TextAlign = ContentAlignment.MiddleCenter;
-            DotNetrisLbl.UseMnemonic = false;
-            DotNetrisLbl.Click += DotNetrisLbl_Click;
+            DotNetrisSinglePlayerLbl.BackColor = System.Drawing.Color.Transparent;
+            DotNetrisSinglePlayerLbl.Font = new Font("Comic Sans MS", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            DotNetrisSinglePlayerLbl.ForeColor = System.Drawing.Color.White;
+            DotNetrisSinglePlayerLbl.Location = new Point(173, 9);
+            DotNetrisSinglePlayerLbl.Name = "DotNetrisSinglePlayerLbl";
+            DotNetrisSinglePlayerLbl.Size = new Size(420, 158);
+            DotNetrisSinglePlayerLbl.TabIndex = 5;
+            DotNetrisSinglePlayerLbl.Text = "DOTNETRIS:   SINGLE PLAYER MODE";
+            DotNetrisSinglePlayerLbl.TextAlign = ContentAlignment.MiddleCenter;
+            DotNetrisSinglePlayerLbl.UseMnemonic = false;
+            DotNetrisSinglePlayerLbl.Click += DotNetrisLbl_Click;
             // 
             // EasySettingBtn
             // 
@@ -138,7 +138,7 @@
             Controls.Add(HardSettingsBtn);
             Controls.Add(NormalSettingsBtn);
             Controls.Add(EasySettingBtn);
-            Controls.Add(DotNetrisLbl);
+            Controls.Add(DotNetrisSinglePlayerLbl);
             Name = "SinglePlayerSettingsForm";
             Text = "Single Player Settings";
             ResumeLayout(false);
@@ -146,7 +146,7 @@
 
         #endregion
 
-        private Label DotNetrisLbl;
+        private Label DotNetrisSinglePlayerLbl;
         private Button EasySettingBtn;
         private Button NormalSettingsBtn;
         private Button HardSettingsBtn;
