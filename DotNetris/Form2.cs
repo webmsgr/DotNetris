@@ -19,7 +19,7 @@ namespace DotNetris
 
         private void DotNetrisLbl_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Teehee!");
         }
     }
 }
