@@ -1,6 +1,6 @@
 ﻿namespace DotNetris
 {
-    partial class Form2
+    partial class MultiplayerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,56 +29,35 @@
         private void InitializeComponent()
         {
             DotNetrisLbl = new Label();
-            button1 = new Button();
-            button2 = new Button();
             SuspendLayout();
             // 
             // DotNetrisLbl
             // 
-            DotNetrisLbl.Font = new Font("Tahoma", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            DotNetrisLbl.Location = new Point(170, 45);
+            DotNetrisLbl.BackColor = System.Drawing.Color.Transparent;
+            DotNetrisLbl.Font = new Font("Comic Sans MS", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            DotNetrisLbl.ForeColor = System.Drawing.Color.Red;
+            DotNetrisLbl.Location = new Point(144, 47);
             DotNetrisLbl.Name = "DotNetrisLbl";
             DotNetrisLbl.Size = new Size(453, 65);
-            DotNetrisLbl.TabIndex = 1;
+            DotNetrisLbl.TabIndex = 4;
             DotNetrisLbl.Text = "DOTNETRIS";
             DotNetrisLbl.TextAlign = ContentAlignment.MiddleCenter;
             DotNetrisLbl.UseMnemonic = false;
+            DotNetrisLbl.Click += DotNetrisLbl_Click;
             // 
-            // button1
-            // 
-            button1.Location = new Point(170, 179);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 2;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(482, 179);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 3;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // Form2
+            // MultiplayerForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(button2);
-            Controls.Add(button1);
             Controls.Add(DotNetrisLbl);
-            Name = "Form2";
-            Text = "Form2";
+            Name = "MultiplayerForm";
+            Text = "Multiplayer";
             ResumeLayout(false);
         }
 
         #endregion
 
         private Label DotNetrisLbl;
-        private Button button1;
-        private Button button2;
     }
 }

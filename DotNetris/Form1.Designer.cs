@@ -1,6 +1,6 @@
 ﻿namespace DotNetris
 {
-    partial class Form1
+    partial class MainMenuForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenuForm));
             DotNetrisLbl = new Label();
             MultiPlayerBtn = new Button();
             SinglePlayerBtn = new Button();
             SettingsBtn = new Button();
             ExitBtn = new Button();
             LogInRegBtn = new Button();
-            ProfileLinkLbl = new LinkLabel();
+            SettingBtn = new Button();
+            ProfileBtn = new Button();
             SuspendLayout();
             // 
             // DotNetrisLbl
@@ -43,7 +44,7 @@
             DotNetrisLbl.BackColor = System.Drawing.Color.Transparent;
             DotNetrisLbl.Font = new Font("Comic Sans MS", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             DotNetrisLbl.ForeColor = System.Drawing.Color.Red;
-            DotNetrisLbl.Location = new Point(111, 54);
+            DotNetrisLbl.Location = new Point(149, 53);
             DotNetrisLbl.Name = "DotNetrisLbl";
             DotNetrisLbl.Size = new Size(453, 65);
             DotNetrisLbl.TabIndex = 0;
@@ -57,7 +58,7 @@
             MultiPlayerBtn.BackColor = System.Drawing.Color.Black;
             MultiPlayerBtn.Font = new Font("Comic Sans MS", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             MultiPlayerBtn.ForeColor = System.Drawing.Color.FromArgb(255, 128, 0);
-            MultiPlayerBtn.Location = new Point(236, 140);
+            MultiPlayerBtn.Location = new Point(266, 135);
             MultiPlayerBtn.Name = "MultiPlayerBtn";
             MultiPlayerBtn.Size = new Size(211, 33);
             MultiPlayerBtn.TabIndex = 1;
@@ -69,7 +70,7 @@
             SinglePlayerBtn.BackColor = System.Drawing.Color.Black;
             SinglePlayerBtn.Font = new Font("Comic Sans MS", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             SinglePlayerBtn.ForeColor = System.Drawing.Color.Yellow;
-            SinglePlayerBtn.Location = new Point(236, 188);
+            SinglePlayerBtn.Location = new Point(266, 188);
             SinglePlayerBtn.Name = "SinglePlayerBtn";
             SinglePlayerBtn.Size = new Size(211, 39);
             SinglePlayerBtn.TabIndex = 2;
@@ -81,7 +82,7 @@
             SettingsBtn.BackColor = System.Drawing.Color.Black;
             SettingsBtn.Font = new Font("Comic Sans MS", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             SettingsBtn.ForeColor = System.Drawing.Color.Lime;
-            SettingsBtn.Location = new Point(236, 246);
+            SettingsBtn.Location = new Point(266, 244);
             SettingsBtn.Name = "SettingsBtn";
             SettingsBtn.Size = new Size(211, 43);
             SettingsBtn.TabIndex = 3;
@@ -93,7 +94,7 @@
             ExitBtn.BackColor = System.Drawing.Color.Black;
             ExitBtn.Font = new Font("Comic Sans MS", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             ExitBtn.ForeColor = System.Drawing.Color.FromArgb(128, 128, 255);
-            ExitBtn.Location = new Point(236, 375);
+            ExitBtn.Location = new Point(266, 377);
             ExitBtn.Name = "ExitBtn";
             ExitBtn.Size = new Size(211, 47);
             ExitBtn.TabIndex = 4;
@@ -105,43 +106,53 @@
             LogInRegBtn.BackColor = System.Drawing.Color.Black;
             LogInRegBtn.Font = new Font("Comic Sans MS", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LogInRegBtn.ForeColor = System.Drawing.Color.Cyan;
-            LogInRegBtn.Location = new Point(236, 307);
+            LogInRegBtn.Location = new Point(266, 307);
             LogInRegBtn.Name = "LogInRegBtn";
             LogInRegBtn.Size = new Size(211, 46);
             LogInRegBtn.TabIndex = 5;
             LogInRegBtn.Text = "LOG IN/REGESTER";
             LogInRegBtn.UseVisualStyleBackColor = false;
             // 
-            // ProfileLinkLbl
+            // SettingBtn
             // 
-            ProfileLinkLbl.BackColor = System.Drawing.Color.Transparent;
-            ProfileLinkLbl.Cursor = Cursors.Hand;
-            ProfileLinkLbl.Font = new Font("Comic Sans MS", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ProfileLinkLbl.LinkColor = System.Drawing.Color.Fuchsia;
-            ProfileLinkLbl.Location = new Point(628, 54);
-            ProfileLinkLbl.Name = "ProfileLinkLbl";
-            ProfileLinkLbl.Size = new Size(133, 35);
-            ProfileLinkLbl.TabIndex = 6;
-            ProfileLinkLbl.TabStop = true;
-            ProfileLinkLbl.Text = "Profile";
-            ProfileLinkLbl.TextAlign = ContentAlignment.TopCenter;
-            ProfileLinkLbl.VisitedLinkColor = System.Drawing.Color.FromArgb(255, 128, 255);
+            SettingBtn.BackColor = System.Drawing.Color.Black;
+            SettingBtn.Font = new Font("Comic Sans MS", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            SettingBtn.ForeColor = System.Drawing.Color.FromArgb(128, 128, 255);
+            SettingBtn.Location = new Point(49, 62);
+            SettingBtn.Name = "SettingBtn";
+            SettingBtn.Size = new Size(126, 41);
+            SettingBtn.TabIndex = 7;
+            SettingBtn.Text = "Settings";
+            SettingBtn.UseVisualStyleBackColor = false;
             // 
-            // Form1
+            // ProfileBtn
+            // 
+            ProfileBtn.BackColor = System.Drawing.Color.Black;
+            ProfileBtn.Font = new Font("Comic Sans MS", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ProfileBtn.ForeColor = System.Drawing.Color.FromArgb(128, 128, 255);
+            ProfileBtn.Location = new Point(579, 62);
+            ProfileBtn.Name = "ProfileBtn";
+            ProfileBtn.Size = new Size(126, 41);
+            ProfileBtn.TabIndex = 8;
+            ProfileBtn.Text = "Profile";
+            ProfileBtn.UseVisualStyleBackColor = false;
+            // 
+            // MainMenuForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(800, 450);
-            Controls.Add(ProfileLinkLbl);
+            Controls.Add(ProfileBtn);
+            Controls.Add(SettingBtn);
             Controls.Add(LogInRegBtn);
             Controls.Add(ExitBtn);
             Controls.Add(SettingsBtn);
             Controls.Add(SinglePlayerBtn);
             Controls.Add(MultiPlayerBtn);
             Controls.Add(DotNetrisLbl);
-            Name = "Form1";
-            Text = "Form1";
+            Name = "MainMenuForm";
+            Text = "Main Menu";
             ResumeLayout(false);
         }
 
@@ -153,6 +164,7 @@
         private Button SettingsBtn;
         private Button ExitBtn;
         private Button LogInRegBtn;
-        private LinkLabel ProfileLinkLbl;
+        private Button SettingBtn;
+        private Button ProfileBtn;
     }
 }

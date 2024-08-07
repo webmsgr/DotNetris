@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace DotNetris
 {
-    public partial class Form2 : Form
+    public partial class MultiplayerForm : Form
     {
-        public Form2()
+        public MultiplayerForm()
         {
             InitializeComponent();
+        }
+
+        private void DotNetrisLbl_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
