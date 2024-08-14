@@ -16,7 +16,7 @@ namespace DotNetris
             return new Piece((bool[])Data.Clone(), Color);
         }
 
-        public void Rotate()
+        public Piece Rotate()
         {
             // 0 1 2
             // 3 4 5
@@ -26,12 +26,12 @@ namespace DotNetris
             // 7 4 1
             // 8 5 2
 
-            Data = new[]
-            {
+            return new Piece([
+            
                 Data[6], Data[3], Data[0],
                 Data[7], Data[4], Data[1],
                 Data[8], Data[5], Data[2]
-            };
+            ], Color);
 
         }
 
