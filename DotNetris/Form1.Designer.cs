@@ -36,6 +36,7 @@
             LogInRegBtn = new Button();
             SettingBtn = new Button();
             ProfileBtn = new Button();
+            button1 = new Button();
             SuspendLayout();
             // 
             // DotNetrisLbl
@@ -124,12 +125,23 @@
             ProfileBtn.Text = "Profile";
             ProfileBtn.UseVisualStyleBackColor = false;
             // 
+            // button1
+            // 
+            button1.Location = new Point(657, 415);
+            button1.Name = "button1";
+            button1.Size = new Size(131, 23);
+            button1.TabIndex = 9;
+            button1.Text = "Open Debug Form";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // MainMenuForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(800, 450);
+            Controls.Add(button1);
             Controls.Add(ProfileBtn);
             Controls.Add(SettingBtn);
             Controls.Add(LogInRegBtn);
@@ -151,5 +163,6 @@
         private Button LogInRegBtn;
         private Button SettingBtn;
         private Button ProfileBtn;
+        private Button button1;
     }
 }
