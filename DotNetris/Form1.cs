@@ -71,7 +71,12 @@ namespace DotNetris
 
         private void ExitBtn_Click(object sender, EventArgs e) 
         {
-            Application.Exit();
+            DialogResult result = MessageBox.Show("Are you sure you want to exit?", "Exit Application", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
 
         private void DotNetrisLbl_Click(object sender, EventArgs e)
