@@ -207,7 +207,7 @@
             // textBox3
             // 
             textBox3.BackColor = System.Drawing.Color.Black;
-            textBox3.ForeColor = System.Drawing.Color.Red;
+            textBox3.ForeColor = System.Drawing.Color.White;
             textBox3.Location = new Point(749, 151);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(184, 23);
@@ -228,7 +228,7 @@
             // textBox4
             // 
             textBox4.BackColor = System.Drawing.Color.Black;
-            textBox4.ForeColor = System.Drawing.Color.FromArgb(0, 0, 0, 7);
+            textBox4.ForeColor = System.Drawing.Color.White;
             textBox4.Location = new Point(749, 196);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(184, 23);

@@ -29,39 +29,39 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProfileForm));
-            listBox1 = new ListBox();
+            ProfilePictureListBox = new ListBox();
             pictureBox1 = new PictureBox();
-            button1 = new Button();
+            ConfirmBtn = new Button();
             ExitBtn5 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // listBox1
+            // ProfilePictureListBox
             // 
-            listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 15;
-            listBox1.Location = new Point(194, 124);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(119, 34);
-            listBox1.TabIndex = 0;
+            ProfilePictureListBox.FormattingEnabled = true;
+            ProfilePictureListBox.ItemHeight = 15;
+            ProfilePictureListBox.Location = new Point(142, 33);
+            ProfilePictureListBox.Name = "ProfilePictureListBox";
+            ProfilePictureListBox.Size = new Size(119, 49);
+            ProfilePictureListBox.TabIndex = 0;
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(81, 139);
+            pictureBox1.Location = new Point(12, 32);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(100, 50);
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
-            // button1
+            // ConfirmBtn
             // 
-            button1.Location = new Point(308, 209);
-            button1.Name = "button1";
-            button1.Size = new Size(95, 53);
-            button1.TabIndex = 2;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            ConfirmBtn.Location = new Point(58, 102);
+            ConfirmBtn.Name = "ConfirmBtn";
+            ConfirmBtn.Size = new Size(136, 53);
+            ConfirmBtn.TabIndex = 2;
+            ConfirmBtn.Text = "Confirm Changes";
+            ConfirmBtn.UseVisualStyleBackColor = true;
+            ConfirmBtn.Click += button1_Click;
             // 
             // ExitBtn5
             // 
@@ -83,9 +83,9 @@
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(800, 450);
             Controls.Add(ExitBtn5);
-            Controls.Add(button1);
+            Controls.Add(ConfirmBtn);
             Controls.Add(pictureBox1);
-            Controls.Add(listBox1);
+            Controls.Add(ProfilePictureListBox);
             Name = "ProfileForm";
             Text = "Profile";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -94,9 +94,9 @@
 
         #endregion
 
-        private ListBox listBox1;
+        private ListBox ProfilePictureListBox;
         private PictureBox pictureBox1;
-        private Button button1;
+        private Button ConfirmBtn;
         private Button ExitBtn5;
     }
 }
