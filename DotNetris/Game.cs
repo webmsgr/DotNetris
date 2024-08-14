@@ -10,35 +10,52 @@ public class Game
     public Game()
     {
         // This does not use secure randomness, but secure randomness does not matter here
-        Seed = Random.Shared.Next(int.MinValue, int.MaxValue);
+        Rand = new Random(Random.Shared.Next(int.MinValue, int.MaxValue));
+        Bag = new PiecePeekBag(new PieceBag(Rand));
+        CurrentPiece = Bag.Next();
+        PiecePosition = (3, 1);
+        Board = new GameBoard();
     }
+
+
+
     /// <summary>
     /// Create a game with a fixed seed
     /// </summary>
     /// <param name="seed">The seed to use</param>
     public Game(int seed)
     {
-        Seed = seed;
+        Rand = new Random(seed);
+        Bag = new PiecePeekBag(new PieceBag(Rand));
+        CurrentPiece = Bag.Next();
+        PiecePosition = (3, 1);
+        Board = new GameBoard();
     }
+
+
+    public PiecePeekBag Bag;
+    public Piece CurrentPiece;
+    public (int, int) PiecePosition;
+
     /// <summary>
     /// The game seed. Used to make the game deterministic.
     /// </summary>
-    public int Seed { get; private set; }
-    
+    public Random Rand;
+
     /// <summary>
     /// The game board
     /// </summary>
-    public GameBoard Board = new GameBoard();
+    public GameBoard Board;
 
     /// <summary>
     /// The current score for this game
     /// </summary>
     public ulong Score { get; private set; }
-    
+
     /// <summary>
     /// Current game inputs. You should update this whenever you get an event from the user/the network.
     /// </summary>
-    public Inputs Inputs { get; set; }
+    public Inputs Inputs { get; set; } = Inputs.None;
 
     /// <summary>
     /// Sets one or more input flags. Call this in your keydown event handler
@@ -61,12 +78,37 @@ public class Game
     /// How many ticks per second the game should run at for real-time play. If an operation takes X seconds, it takes X * Tickrate Ticks.
     /// </summary>
     public const int Tickrate = 30;
-    
+
+
+    public TickTimer PieceDropSpeed = new TickTimer(Tickrate/3);
+
     /// <summary>
     /// Move the game forward one tick. Not currently implemented.
     /// </summary>
     public void Tick()
     {
-        throw new NotImplementedException();
+        OnTick.Invoke(this, Inputs);
+        if (PieceDropSpeed.Tick())
+        {
+            if (!Board.DoesPieceCollide(PiecePosition.Item1, PiecePosition.Item2+1, CurrentPiece))
+            {
+                PiecePosition.Item2 += 1;
+            }
+            else
+            {
+                Board.ApplyPiece(PiecePosition.Item1, PiecePosition.Item2, CurrentPiece);
+                PiecePosition = (3, 1);
+                CurrentPiece = Bag.Next();
+                if (Board.DoesPieceCollide(3, 1, CurrentPiece))
+                {
+                    OnLose.Invoke(this, null);
+                }
+             }
+        }
     }
+
+    
+
+    public event EventHandler<Inputs> OnTick = (sender, inputs) => {};
+    public event EventHandler OnLose = (sender, args) => {};
 }
