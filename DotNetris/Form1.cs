@@ -83,5 +83,15 @@ namespace DotNetris
         {
             MessageBox.Show("Found me!");
         }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.Control | Keys.Alt | Keys.D))
+            {
+                new DebugForm().ShowDialog();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
     }
 }
