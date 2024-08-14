@@ -88,6 +88,7 @@
             Controls.Add(ProfilePictureListBox);
             Name = "ProfileForm";
             Text = "Profile";
+            
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }

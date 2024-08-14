@@ -34,5 +34,7 @@ namespace DotNetris
             // Close the current form
             this.Close();
         }
+
+        
     }
 }
