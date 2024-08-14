@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginRegisterForm));
-            LogInBtn2 = new Button();
+            LoginBtn2 = new Button();
             textBox1 = new TextBox();
             textBox2 = new TextBox();
             UsernameLbl = new Label();
@@ -50,17 +50,17 @@
             ExitBtn4 = new Button();
             SuspendLayout();
             // 
-            // LogInBtn2
+            // LoginBtn2
             // 
-            LogInBtn2.BackColor = System.Drawing.Color.Black;
-            LogInBtn2.Font = new Font("Comic Sans MS", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LogInBtn2.ForeColor = System.Drawing.Color.MediumPurple;
-            LogInBtn2.Location = new Point(788, 302);
-            LogInBtn2.Name = "LogInBtn2";
-            LogInBtn2.Size = new Size(145, 71);
-            LogInBtn2.TabIndex = 2;
-            LogInBtn2.Text = "Log In";
-            LogInBtn2.UseVisualStyleBackColor = false;
+            LoginBtn2.BackColor = System.Drawing.Color.Black;
+            LoginBtn2.Font = new Font("Comic Sans MS", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LoginBtn2.ForeColor = System.Drawing.Color.MediumPurple;
+            LoginBtn2.Location = new Point(788, 302);
+            LoginBtn2.Name = "LoginBtn2";
+            LoginBtn2.Size = new Size(145, 71);
+            LoginBtn2.TabIndex = 2;
+            LoginBtn2.Text = "Log In";
+            LoginBtn2.UseVisualStyleBackColor = false;
             // 
             // textBox1
             // 
@@ -292,7 +292,7 @@
             Controls.Add(UsernameLbl);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
-            Controls.Add(LogInBtn2);
+            Controls.Add(LoginBtn2);
             Name = "LoginRegisterForm";
             Text = "Login/Register";
             ResumeLayout(false);
@@ -301,7 +301,7 @@
 
         #endregion
 
-        private Button LogInBtn2;
+        private Button LoginBtn2;
         private TextBox textBox1;
         private TextBox textBox2;
         private Label UsernameLbl;

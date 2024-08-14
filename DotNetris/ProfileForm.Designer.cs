@@ -32,6 +32,7 @@
             listBox1 = new ListBox();
             pictureBox1 = new PictureBox();
             button1 = new Button();
+            ExitBtn5 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -61,6 +62,18 @@
             button1.Text = "button1";
             button1.UseVisualStyleBackColor = true;
             // 
+            // ExitBtn5
+            // 
+            ExitBtn5.BackColor = System.Drawing.Color.Black;
+            ExitBtn5.Font = new Font("Comic Sans MS", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ExitBtn5.ForeColor = System.Drawing.Color.FromArgb(255, 128, 128);
+            ExitBtn5.Location = new Point(620, 345);
+            ExitBtn5.Name = "ExitBtn5";
+            ExitBtn5.Size = new Size(142, 61);
+            ExitBtn5.TabIndex = 21;
+            ExitBtn5.Text = "Exit to Main Menu";
+            ExitBtn5.UseVisualStyleBackColor = false;
+            // 
             // ProfileForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -68,6 +81,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(800, 450);
+            Controls.Add(ExitBtn5);
             Controls.Add(button1);
             Controls.Add(pictureBox1);
             Controls.Add(listBox1);
@@ -82,5 +96,6 @@
         private ListBox listBox1;
         private PictureBox pictureBox1;
         private Button button1;
+        private Button ExitBtn5;
     }
 }
