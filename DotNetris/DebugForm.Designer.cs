@@ -222,6 +222,7 @@
             Controls.Add(SetYBox);
             Controls.Add(setXBox);
             Controls.Add(Render);
+            KeyPreview = true;
             Name = "DebugForm";
             Text = "Debug";
             ((System.ComponentModel.ISupportInitialize)setXBox).EndInit();

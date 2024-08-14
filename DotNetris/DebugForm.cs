@@ -39,13 +39,69 @@ namespace DotNetris
             SetColorBox.DataSource = colors.Clone();
             FillRowColor.DataSource = colors.Clone();
             FillAllColor.DataSource = colors.Clone();
+            
+
+        }
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            base.OnKeyDown(e);
+            switch (e.KeyCode)
+            {
+                case Keys.Right:
+                    game.SetInput(Inputs.RotateRight);
+                    break;
+                case Keys.Left:
+                    game.SetInput(Inputs.RotateLeft);
+                    break;
+                case Keys.W:
+                    game.SetInput(Inputs.Up);
+                    break;
+                case Keys.D: 
+                    game.SetInput(Inputs.Right);
+                    break;
+                case Keys.A:
+                    game.SetInput(Inputs.Left);
+                    break;
+                case Keys.S:
+                    game.SetInput(Inputs.Down);
+                    break;
+            }
+
+            
+        }
+        protected override void OnKeyUp(KeyEventArgs e)
+        {
+            base.OnKeyUp(e);
+            switch (e.KeyCode)
+            {
+                case Keys.Right:
+                    game.ClearInput(Inputs.RotateRight);
+                    break;
+                case Keys.Left:
+                    game.ClearInput(Inputs.RotateLeft);
+                    break;
+                case Keys.W:
+                    game.ClearInput(Inputs.Up);
+                    break;
+                case Keys.D:
+                    game.ClearInput(Inputs.Right);
+                    break;
+                case Keys.A:
+                    game.ClearInput(Inputs.Left);
+                    break;
+                case Keys.S:
+                    game.ClearInput(Inputs.Down);
+                    break;
+            }
+
 
         }
 
         private void OnTick(object? sender, Inputs t)
         {
             GameTickCount += 1;
-            TickLabel.Text = $"{GameTickCount} Ticks";
+            TickLabel.Text = $"{GameTickCount} Ticks: {t}";
         }
 
         private void OnLose(object sender, object? data)
