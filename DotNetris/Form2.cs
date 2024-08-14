@@ -15,6 +15,19 @@ namespace DotNetris
         public MultiplayerForm()
         {
             InitializeComponent();
+            ExitBtn2.Click += new EventHandler(ExitBtn2_Click);
+        }
+
+        private void ExitBtn2_Click(object sender, EventArgs e)
+        {
+            // Create an instance of the Main Menu form
+            MainMenuForm mainMenu = new MainMenuForm();
+
+            // Show the Main Menu form
+            mainMenu.Show();
+
+            // Close the current form
+            this.Close();
         }
 
         private void DotNetrisLbl_Click(object sender, EventArgs e)

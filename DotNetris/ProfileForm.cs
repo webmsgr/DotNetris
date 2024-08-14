@@ -15,6 +15,24 @@ namespace DotNetris
         public ProfileForm()
         {
             InitializeComponent();
+            ExitBtn5.Click += new EventHandler(ExitBtn5_Click);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ExitBtn5_Click(object sender, EventArgs e)
+        {
+            // Create an instance of the Main Menu form
+            MainMenuForm mainMenu = new MainMenuForm();
+
+            // Show the Main Menu form
+            mainMenu.Show();
+
+            // Close the current form
+            this.Close();
         }
     }
 }

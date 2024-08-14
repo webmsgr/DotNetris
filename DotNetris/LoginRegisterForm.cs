@@ -15,7 +15,21 @@ namespace DotNetris
         public LoginRegisterForm()
         {
             InitializeComponent();
+            ExitBtn4.Click += new EventHandler(ExitBtn4_Click);
         }
+
+        private void ExitBtn4_Click(object sender, EventArgs e)
+        {
+            // Create an instance of the Main Menu form
+            MainMenuForm mainMenu = new MainMenuForm();
+
+            // Show the Main Menu form
+            mainMenu.Show();
+
+            // Close the current form
+            this.Close();
+        }
+
 
         private void LoginLbl_Click(object sender, EventArgs e)
         {

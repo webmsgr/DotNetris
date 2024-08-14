@@ -42,6 +42,7 @@
             ExitBtn6.TabIndex = 21;
             ExitBtn6.Text = "Exit to Main Menu";
             ExitBtn6.UseVisualStyleBackColor = false;
+            ExitBtn6.Click += ExitBtn6_Click;
             // 
             // SettingForm
             // 
