@@ -47,6 +47,7 @@
             textBox4 = new TextBox();
             textBox5 = new TextBox();
             label6 = new Label();
+            ExitBtn4 = new Button();
             SuspendLayout();
             // 
             // LogInBtn2
@@ -139,6 +140,7 @@
             LoginLbl.Size = new Size(277, 30);
             LoginLbl.TabIndex = 9;
             LoginLbl.Text = "Already have an account?";
+            LoginLbl.Click += LoginLbl_Click;
             // 
             // checkBox1
             // 
@@ -253,6 +255,18 @@
             label6.Text = "Confirm Password: ";
             label6.TextAlign = ContentAlignment.TopCenter;
             // 
+            // ExitBtn4
+            // 
+            ExitBtn4.BackColor = System.Drawing.Color.Black;
+            ExitBtn4.Font = new Font("Comic Sans MS", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ExitBtn4.ForeColor = System.Drawing.Color.FromArgb(255, 128, 128);
+            ExitBtn4.Location = new Point(490, 356);
+            ExitBtn4.Name = "ExitBtn4";
+            ExitBtn4.Size = new Size(142, 61);
+            ExitBtn4.TabIndex = 20;
+            ExitBtn4.Text = "Exit to Main Menu";
+            ExitBtn4.UseVisualStyleBackColor = false;
+            // 
             // LoginRegisterForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -260,6 +274,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1038, 450);
+            Controls.Add(ExitBtn4);
             Controls.Add(label6);
             Controls.Add(textBox5);
             Controls.Add(textBox4);
@@ -304,5 +319,6 @@
         private TextBox textBox4;
         private TextBox textBox5;
         private Label label6;
+        private Button ExitBtn4;
     }
 }

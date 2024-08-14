@@ -59,7 +59,7 @@
             MultiPlayerBtn.ForeColor = System.Drawing.Color.FromArgb(255, 128, 0);
             MultiPlayerBtn.Location = new Point(266, 135);
             MultiPlayerBtn.Name = "MultiPlayerBtn";
-            MultiPlayerBtn.Size = new Size(211, 33);
+            MultiPlayerBtn.Size = new Size(211, 40);
             MultiPlayerBtn.TabIndex = 1;
             MultiPlayerBtn.Text = "MULTIPLAYER ";
             MultiPlayerBtn.UseVisualStyleBackColor = false;
@@ -69,7 +69,7 @@
             SinglePlayerBtn.BackColor = System.Drawing.Color.Black;
             SinglePlayerBtn.Font = new Font("Comic Sans MS", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             SinglePlayerBtn.ForeColor = System.Drawing.Color.Yellow;
-            SinglePlayerBtn.Location = new Point(266, 198);
+            SinglePlayerBtn.Location = new Point(266, 205);
             SinglePlayerBtn.Name = "SinglePlayerBtn";
             SinglePlayerBtn.Size = new Size(211, 39);
             SinglePlayerBtn.TabIndex = 2;

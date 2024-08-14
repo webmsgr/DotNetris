@@ -16,5 +16,10 @@ namespace DotNetris
         {
             InitializeComponent();
         }
+
+        private void LoginLbl_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Bet you clicked others before me~");
+        }
     }
 }

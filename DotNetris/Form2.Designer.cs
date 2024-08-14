@@ -34,6 +34,7 @@
             JoinGameBtn = new Button();
             label1 = new Label();
             label2 = new Label();
+            ExitBtn2 = new Button();
             SuspendLayout();
             // 
             // DotNetriSMutliLbl
@@ -99,6 +100,18 @@
             label2.Text = "Join A Mulitplayer Game";
             label2.TextAlign = ContentAlignment.TopCenter;
             // 
+            // ExitBtn2
+            // 
+            ExitBtn2.BackColor = System.Drawing.Color.Black;
+            ExitBtn2.Font = new Font("Comic Sans MS", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ExitBtn2.ForeColor = System.Drawing.Color.FromArgb(255, 128, 128);
+            ExitBtn2.Location = new Point(622, 358);
+            ExitBtn2.Name = "ExitBtn2";
+            ExitBtn2.Size = new Size(142, 61);
+            ExitBtn2.TabIndex = 10;
+            ExitBtn2.Text = "Exit to Main Menu";
+            ExitBtn2.UseVisualStyleBackColor = false;
+            // 
             // MultiplayerForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -106,6 +119,7 @@
             BackColor = SystemColors.Control;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(800, 450);
+            Controls.Add(ExitBtn2);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(JoinGameBtn);
@@ -123,5 +137,6 @@
         private Button JoinGameBtn;
         private Label label1;
         private Label label2;
+        private Button ExitBtn2;
     }
 }

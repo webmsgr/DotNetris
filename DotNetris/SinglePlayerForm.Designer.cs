@@ -36,6 +36,7 @@
             EasyModeDescriptLbl = new Label();
             NormalModeDescriptLbl = new Label();
             HardModeDescriptLbl = new Label();
+            ExitBtn3 = new Button();
             SuspendLayout();
             // 
             // DotNetrisSinglePlayerLbl
@@ -125,6 +126,18 @@
             HardModeDescriptLbl.TabIndex = 11;
             HardModeDescriptLbl.Text = "Starts Fast and gets faster, no previews of the next pieces";
             // 
+            // ExitBtn3
+            // 
+            ExitBtn3.BackColor = System.Drawing.Color.Black;
+            ExitBtn3.Font = new Font("Comic Sans MS", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ExitBtn3.ForeColor = System.Drawing.Color.FromArgb(255, 128, 128);
+            ExitBtn3.Location = new Point(646, 377);
+            ExitBtn3.Name = "ExitBtn3";
+            ExitBtn3.Size = new Size(142, 61);
+            ExitBtn3.TabIndex = 14;
+            ExitBtn3.Text = "Exit to Main Menu";
+            ExitBtn3.UseVisualStyleBackColor = false;
+            // 
             // SinglePlayerSettingsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -132,6 +145,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(800, 450);
+            Controls.Add(ExitBtn3);
             Controls.Add(HardModeDescriptLbl);
             Controls.Add(NormalModeDescriptLbl);
             Controls.Add(EasyModeDescriptLbl);
@@ -153,5 +167,6 @@
         private Label EasyModeDescriptLbl;
         private Label NormalModeDescriptLbl;
         private Label HardModeDescriptLbl;
+        private Button ExitBtn3;
     }
 }
