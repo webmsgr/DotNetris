@@ -125,7 +125,7 @@ namespace DotNetris.Tests
         [TestMethod]
         public void ChunkedStream_ReadWriteEncryptedTCP_Works()
         {
-            ushort port = 19743; // shouldn't be in use (i hope)
+            ushort port = 8090; // shouldn't be in use (i hope)
             int timesToCheck = 32;
             Thread server = new Thread(() =>
             {
@@ -165,6 +165,7 @@ namespace DotNetris.Tests
             server.Join();
             
         }
-        
+
+
     }
 }
