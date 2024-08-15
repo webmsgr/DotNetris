@@ -39,10 +39,20 @@ namespace DotNetris
             base.OnPaint(pe);
 
             // draw map
+            
+            // background
+
+            pe.Graphics.FillRectangle(new SolidBrush(System.Drawing.Color.Black), 0, 0, GameBoard.Width * GameBoardRender.TileSize, GameBoard.Height * GameBoardRender.TileSize);
+            
             //var pen = new Pen(System.Drawing.Color.Black);
             int index = 0;
             foreach (var color in game.Board.GetBoard())
             {
+                if (color == Color.Empty)
+                {
+                    index++;
+                    continue;
+                }
                 var x = index % GameBoard.Width;
                 var y = index / GameBoard.Width;
                 var real_x = x * TileSize;
