@@ -46,6 +46,7 @@ namespace DotNetris
             
             //var pen = new Pen(System.Drawing.Color.Black);
             int index = 0;
+            var rects = new Dictionary<Color, List<Rectangle>>();
             foreach (var color in game.Board.GetBoard())
             {
                 if (color == Color.Empty)
@@ -57,14 +58,21 @@ namespace DotNetris
                 var y = index / GameBoard.Width;
                 var real_x = x * TileSize;
                 var real_y = y * TileSize;
-                var toDraw = color.ToDrawable();
-                var pen = new SolidBrush(toDraw); // maybe optimize here
-                pe.Graphics.FillRectangle(pen, real_x, real_y, TileSize, TileSize);
+
+                if (!rects.ContainsKey(color))
+                {
+                    rects.Add(color, new List<Rectangle>());
+                }
+                rects[color].Add(new Rectangle(real_x, real_y, TileSize, TileSize));
                 index++;
             }
 
             // draw current piece
-            var pieceDraw = new SolidBrush(game.CurrentPiece.Color.ToDrawable());
+            // make sure our rects dict has the piece color
+            if (!rects.ContainsKey(game.CurrentPiece.Color))
+            {
+                rects.Add(game.CurrentPiece.Color, new List<Rectangle>(9));
+            }
             for (int pieceIndex = 0; pieceIndex < 9; pieceIndex++)
             {
                 var x = pieceIndex % 3 + (game.PiecePosition.Item1);
@@ -73,9 +81,14 @@ namespace DotNetris
                 var real_y = y * TileSize;
                 if (game.CurrentPiece.Data[pieceIndex])
                 {
-                    pe.Graphics.FillRectangle(pieceDraw, real_x, real_y, TileSize, TileSize);
+                    rects[game.CurrentPiece.Color].Add(new Rectangle(real_x, real_y, TileSize, TileSize));
                 }
+            }
 
+            foreach (var colorRects in rects)
+            {
+                var brush = new SolidBrush(colorRects.Key.ToDrawable());
+                pe.Graphics.FillRectangles(brush, colorRects.Value.ToArray());
             }
 
         }
