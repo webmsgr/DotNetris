@@ -25,7 +25,17 @@ namespace DotNetris
                 true, false, false,
                 true, true, true,
                 false, false, false
-                ], Color.Blue)
+                ], Color.Blue),
+            new Piece([
+                false, true, false,
+                false, true, false,
+                false, true, false,
+                ], Color.Purple),
+            new Piece([
+                true, true, true,
+                true, true, true,
+                true, true, true
+                ], Color.Green),
         };
 
         public PieceBag(Random rand)

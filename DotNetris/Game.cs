@@ -82,6 +82,8 @@ public class Game
 
     public TickTimer PieceDropSpeed = new TickTimer(Tickrate/3);
 
+    public TickTimer MoveTimer = new TickTimer(Tickrate/15); // pieces move every 1/15th of a second with the keys
+
     /// <summary>
     /// Move the game forward one tick. Not currently implemented.
     /// </summary>
@@ -103,6 +105,40 @@ public class Game
                 {
                     OnLose.Invoke(this, null);
                 }
+            }
+        }
+
+        if (MoveTimer.Tick())
+        {
+            if (Inputs.HasFlag(Inputs.Right) &&
+                !Board.DoesPieceCollide(PiecePosition.Item1 + 1, PiecePosition.Item2, CurrentPiece))
+            {
+                PiecePosition.Item1 += 1;   
+            }
+            if (Inputs.HasFlag(Inputs.Left) &&
+                !Board.DoesPieceCollide(PiecePosition.Item1 - 1, PiecePosition.Item2, CurrentPiece))
+            {
+                PiecePosition.Item1 -= 1;   
+            }
+            if (Inputs.HasFlag(Inputs.RotateRight))
+            {
+                var newPiece = CurrentPiece.Rotate();
+                if (!Board.DoesPieceCollide(PiecePosition.Item1, PiecePosition.Item2, newPiece))
+                {
+                    CurrentPiece = newPiece;
+                }
+            }
+            if (Inputs.HasFlag(Inputs.RotateLeft))
+            {
+                var newPiece = CurrentPiece.Rotate().Rotate().Rotate(); // bad
+                if (!Board.DoesPieceCollide(PiecePosition.Item1, PiecePosition.Item2, newPiece))
+                {
+                    CurrentPiece = newPiece;
+                }
+            }
+            if (Inputs.HasFlag(Inputs.Down))
+            {
+                PieceDropSpeed.Left = 1;
             }
         }
     }
