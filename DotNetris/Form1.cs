@@ -39,37 +39,37 @@ namespace DotNetris
 
         }
 
-        private void SinglePlayerBtn_Click(object sender,EventArgs e) 
+        private void SinglePlayerBtn_Click(object sender, EventArgs e)
         {
-            
+
             settingsForm.Show();
 
-            this.Hide(); 
+            this.Hide();
 
         }
 
-        private void LogInRegBtn_Click(object sender, EventArgs e) 
+        private void LogInRegBtn_Click(object sender, EventArgs e)
         {
             loginRegisterForm.Show();
 
             this.Hide();
         }
 
-        private void ProfileBtn_Click(object sender, EventArgs e) 
-        { 
+        private void ProfileBtn_Click(object sender, EventArgs e)
+        {
             frm.Show();
 
             this.Hide();
         }
 
-        private void SettingBtn_Click(object sender, EventArgs e) 
-        { 
+        private void SettingBtn_Click(object sender, EventArgs e)
+        {
             settingForm.Show();
 
             this.Hide();
         }
 
-        private void ExitBtn_Click(object sender, EventArgs e) 
+        private void ExitBtn_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Are you sure you want to exit?", "Exit Application", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 

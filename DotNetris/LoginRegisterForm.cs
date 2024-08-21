@@ -20,12 +20,6 @@ namespace DotNetris
 
         private void ExitBtn4_Click(object sender, EventArgs e)
         {
-            // Create an instance of the Main Menu form
-            MainMenuForm mainMenu = new MainMenuForm();
-
-            // Show the Main Menu form
-            mainMenu.Show();
-
             // Close the current form
             this.Close();
         }
@@ -34,6 +28,15 @@ namespace DotNetris
         private void LoginLbl_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Bet you clicked others before me~");
+        }
+
+        private void LoginRegisterForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Create an instance of the Main Menu form
+            MainMenuForm mainMenu = new MainMenuForm();
+
+            // Show the Main Menu form
+            mainMenu.Show();
         }
     }
 }
