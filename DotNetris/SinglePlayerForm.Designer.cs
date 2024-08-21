@@ -64,6 +64,7 @@
             EasySettingBtn.TabIndex = 6;
             EasySettingBtn.Text = "Easy Mode";
             EasySettingBtn.UseVisualStyleBackColor = false;
+            EasySettingBtn.Click += EasySettingBtn_Click;
             // 
             // NormalSettingsBtn
             // 
@@ -76,6 +77,7 @@
             NormalSettingsBtn.TabIndex = 7;
             NormalSettingsBtn.Text = "Normal Mode";
             NormalSettingsBtn.UseVisualStyleBackColor = false;
+            NormalSettingsBtn.Click += NormalSettingsBtn_Click;
             // 
             // HardSettingsBtn
             // 
@@ -88,6 +90,7 @@
             HardSettingsBtn.TabIndex = 8;
             HardSettingsBtn.Text = "Hard Mode";
             HardSettingsBtn.UseVisualStyleBackColor = false;
+            HardSettingsBtn.Click += HardSettingsBtn_Click;
             // 
             // EasyModeDescriptLbl
             // 

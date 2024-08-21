@@ -28,7 +28,7 @@ namespace DotNetris
 
         public GameBoardRender()
         {
-            game = new Game();
+            game = new Game(Difficulty.Normal);
             InitializeComponent();
             Height = GameBoard.Height * GameBoardRender.TileSize;
             Width = GameBoard.Width * GameBoardRender.TileSize;
