@@ -145,10 +145,25 @@ public class Game
                 PieceDropSpeed.Left = 1;
             }
         }
+        // now, check row clear
+        int combo = 0;
+        for (int y = 0; y < GameBoard.Height; y++)
+        {
+            if (Board.GetRow(y)
+                .ToArray()
+                .All((c) => c != Color.Empty))
+            {
+                Board.ClearLine(y);
+                combo++;
+                Score += 100 * (ulong)combo;
+            }
+        } 
+        OnScoreUpdate.Invoke(this, Score);
     }
 
     
 
     public event EventHandler<Inputs> OnTick = (sender, inputs) => {};
     public event EventHandler OnLose = (sender, args) => {};
+    public event EventHandler<ulong> OnScoreUpdate = (sender, e) => { };
 }
