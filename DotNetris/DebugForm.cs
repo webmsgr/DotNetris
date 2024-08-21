@@ -39,19 +39,77 @@ namespace DotNetris
             SetColorBox.DataSource = colors.Clone();
             FillRowColor.DataSource = colors.Clone();
             FillAllColor.DataSource = colors.Clone();
+            ClearRowSelect.Maximum = GameBoard.Height - 1;
+
+
+
+        }
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            base.OnKeyDown(e);
+            switch (e.KeyCode)
+            {
+                case Keys.Right:
+                    game.SetInput(Inputs.RotateRight);
+                    break;
+                case Keys.Left:
+                    game.SetInput(Inputs.RotateLeft);
+                    break;
+                case Keys.W:
+                    game.SetInput(Inputs.Up);
+                    break;
+                case Keys.D:
+                    game.SetInput(Inputs.Right);
+                    break;
+                case Keys.A:
+                    game.SetInput(Inputs.Left);
+                    break;
+                case Keys.S:
+                    game.SetInput(Inputs.Down);
+                    break;
+            }
+
+
+        }
+        protected override void OnKeyUp(KeyEventArgs e)
+        {
+            base.OnKeyUp(e);
+            switch (e.KeyCode)
+            {
+                case Keys.Right:
+                    game.ClearInput(Inputs.RotateRight);
+                    break;
+                case Keys.Left:
+                    game.ClearInput(Inputs.RotateLeft);
+                    break;
+                case Keys.W:
+                    game.ClearInput(Inputs.Up);
+                    break;
+                case Keys.D:
+                    game.ClearInput(Inputs.Right);
+                    break;
+                case Keys.A:
+                    game.ClearInput(Inputs.Left);
+                    break;
+                case Keys.S:
+                    game.ClearInput(Inputs.Down);
+                    break;
+            }
+
 
         }
 
         private void OnTick(object? sender, Inputs t)
         {
             GameTickCount += 1;
-            TickLabel.Text = $"{GameTickCount} Ticks";
+            TickLabel.Text = $"{GameTickCount} Ticks: {t}";
         }
 
         private void OnLose(object sender, object? data)
         {
             AutoTickEnabled.Checked = false;
-            MessageBox.Show("You lose!");
+            MessageBox.Show($"You lose! Your score: {game.Score:N0}");
             Reset();
 
         }
@@ -84,6 +142,7 @@ namespace DotNetris
             SetYBox.Value = y;
             setXBox.Value = x;
             FillRowY.Value = y;
+            ClearRowSelect.Value = y;
         }
 
         private void AutoTickTimer_Tick(object sender, EventArgs e)
@@ -93,6 +152,12 @@ namespace DotNetris
                 game.Tick();
                 Render.Invalidate();
             }
+        }
+
+        private void OnScoreUpdate(object sender, ulong score)
+        {
+            ScoreLabel.Text = $"Score: {score:N0}";
+
         }
 
         private void AutoTickRate_ValueChanged(object sender, EventArgs e)
@@ -114,15 +179,23 @@ namespace DotNetris
             game = new Game("hollowheart".GetHashCode());
             game.OnTick += OnTick;
             game.OnLose += OnLose;
+            game.OnScoreUpdate += OnScoreUpdate;
             Render.game = game;
             Render.Invalidate();
             TickLabel.Text = "0 Ticks";
             GameTickCount = 0;
+            ScoreLabel.Text = "Score: 0";
         }
 
         private void ResetBtn_Click(object sender, EventArgs e)
         {
-            Reset();   
+            Reset();
+        }
+
+        private void ClearRowBtn_Click(object sender, EventArgs e)
+        {
+            game.Board.ClearLine((int)ClearRowSelect.Value);
+            Render.Invalidate();
         }
     }
 }

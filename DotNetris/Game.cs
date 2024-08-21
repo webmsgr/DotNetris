@@ -82,12 +82,18 @@ public class Game
 
     public TickTimer PieceDropSpeed = new TickTimer(Tickrate/3);
 
+    //public TickTimer MoveTimer = new TickTimer(Tickrate/15); // pieces move every 1/15th of a second with the keys
+
+
+    private InputHelper InputHelper = new();
+
     /// <summary>
     /// Move the game forward one tick. Not currently implemented.
     /// </summary>
     public void Tick()
     {
         OnTick.Invoke(this, Inputs);
+        InputHelper.Tick(Inputs);
         if (PieceDropSpeed.Tick())
         {
             if (!Board.DoesPieceCollide(PiecePosition.Item1, PiecePosition.Item2+1, CurrentPiece))
@@ -103,12 +109,61 @@ public class Game
                 {
                     OnLose.Invoke(this, null);
                 }
-             }
+            }
         }
+
+        
+        {
+            if (InputHelper.IsDownThisTick(Inputs.Right) &&
+                !Board.DoesPieceCollide(PiecePosition.Item1 + 1, PiecePosition.Item2, CurrentPiece))
+            {
+                PiecePosition.Item1 += 1;   
+            }
+            if (InputHelper.IsDownThisTick(Inputs.Left) &&
+                !Board.DoesPieceCollide(PiecePosition.Item1 - 1, PiecePosition.Item2, CurrentPiece))
+            {
+                PiecePosition.Item1 -= 1;   
+            }
+            if (InputHelper.IsDownThisTick(Inputs.RotateRight))
+            {
+                var newPiece = CurrentPiece.Rotate();
+                if (!Board.DoesPieceCollide(PiecePosition.Item1, PiecePosition.Item2, newPiece))
+                {
+                    CurrentPiece = newPiece;
+                }
+            }
+            if (InputHelper.IsDownThisTick(Inputs.RotateLeft))
+            {
+                var newPiece = CurrentPiece.Rotate().Rotate().Rotate(); // bad
+                if (!Board.DoesPieceCollide(PiecePosition.Item1, PiecePosition.Item2, newPiece))
+                {
+                    CurrentPiece = newPiece;
+                }
+            }
+            if (InputHelper.IsDown(Inputs.Down))
+            {
+                PieceDropSpeed.Left = 1;
+            }
+        }
+        // now, check row clear
+        int combo = 0;
+        for (int y = 0; y < GameBoard.Height; y++)
+        {
+            if (Board.GetRow(y)
+                .ToArray()
+                .All((c) => c != Color.Empty))
+            {
+                Board.ClearLine(y);
+                combo++;
+                Score += 100 * (ulong)combo;
+            }
+        } 
+        OnScoreUpdate.Invoke(this, Score);
     }
 
     
 
     public event EventHandler<Inputs> OnTick = (sender, inputs) => {};
     public event EventHandler OnLose = (sender, args) => {};
+    public event EventHandler<ulong> OnScoreUpdate = (sender, e) => { };
 }
