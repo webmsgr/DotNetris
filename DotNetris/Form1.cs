@@ -2,14 +2,20 @@ namespace DotNetris
 {
     public partial class MainMenuForm : Form
     {
-        MultiplayerForm form2 = new MultiplayerForm();
-        SinglePlayerSettingsForm settingsForm = new SinglePlayerSettingsForm();
-        LoginRegisterForm loginRegisterForm = new LoginRegisterForm();
-        ProfileForm frm = new ProfileForm();
-        SettingForm settingForm = new SettingForm();
+        private MultiplayerForm form2;
+        private SinglePlayerSettingsForm settingsForm;
+        private LoginRegisterForm loginRegisterForm;
+        private ProfileForm frm;
+        private SettingForm settingForm;
 
         public MainMenuForm()
         {
+            form2 = new MultiplayerForm(this);
+            settingsForm = new SinglePlayerSettingsForm(this);
+            loginRegisterForm = new LoginRegisterForm(this);
+            frm = new ProfileForm(this);
+            settingForm = new SettingForm(this);
+
             InitializeComponent();
             MultiPlayerBtn.Click += new EventHandler(MulitPlayerBtn_Click);
             SinglePlayerBtn.Click += new EventHandler(SinglePlayerBtn_Click);

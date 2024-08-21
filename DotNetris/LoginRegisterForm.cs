@@ -12,9 +12,11 @@ namespace DotNetris
 {
     public partial class LoginRegisterForm : Form
     {
-        public LoginRegisterForm()
+        private MainMenuForm mainMenu;
+        public LoginRegisterForm(MainMenuForm mainMenu)
         {
             InitializeComponent();
+            this.mainMenu = mainMenu;
             ExitBtn4.Click += new EventHandler(ExitBtn4_Click);
         }
 

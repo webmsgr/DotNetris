@@ -12,9 +12,12 @@ namespace DotNetris
 {
     public partial class MultiplayerForm : Form
     {
-        public MultiplayerForm()
+        private MainMenuForm mainMenu;
+
+        public MultiplayerForm(MainMenuForm mainMenu)
         {
             InitializeComponent();
+            this.mainMenu = mainMenu;
             ExitBtn2.Click += new EventHandler(ExitBtn2_Click);
         }
 
