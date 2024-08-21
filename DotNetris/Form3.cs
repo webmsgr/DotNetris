@@ -12,16 +12,17 @@ namespace DotNetris
 {
     public partial class SettingForm : Form
     {
-        public SettingForm()
+        private MainMenuForm mainMenu;
+        public SettingForm(MainMenuForm mainMenu)
         {
             InitializeComponent();
+            this.mainMenu = mainMenu;
             ExitBtn6.Click += new EventHandler(ExitBtn6_Click);
         }
 
         private void ExitBtn6_Click(object sender, EventArgs e)
         {
-            // Create an instance of the Main Menu form
-            MainMenuForm mainMenu = new MainMenuForm();
+            
 
             // Show the Main Menu form
             mainMenu.Show();

@@ -12,9 +12,12 @@ namespace DotNetris
 {
     public partial class SinglePlayerSettingsForm : Form
     {
-        public SinglePlayerSettingsForm()
+        private MainMenuForm mainMenu;
+
+        public SinglePlayerSettingsForm(MainMenuForm mainMenu)
         {
             InitializeComponent();
+            this.mainMenu = mainMenu;
             ExitBtn3.Click += new EventHandler(ExitBtn3_Click);
         }
 

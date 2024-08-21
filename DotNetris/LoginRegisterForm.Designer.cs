@@ -295,6 +295,7 @@
             Controls.Add(LoginBtn2);
             Name = "LoginRegisterForm";
             Text = "Login/Register";
+            FormClosing += LoginRegisterForm_FormClosing;
             ResumeLayout(false);
             PerformLayout();
         }
