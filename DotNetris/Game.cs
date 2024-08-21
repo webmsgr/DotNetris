@@ -162,7 +162,7 @@ public class Game
                 break;
         }
         // add based on level
-        decimal speed = (baseSpeed + (scalingFactor * Level));
+        decimal speed = (baseSpeed + (scalingFactor * (Level - 1)));
         PieceDropSpeed.Interval = (int)Math.Floor(Tickrate / Math.Floor(speed));
     }
 
