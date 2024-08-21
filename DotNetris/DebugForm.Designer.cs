@@ -46,11 +46,15 @@
             AutoTickTimer = new System.Windows.Forms.Timer(components);
             TickLabel = new Label();
             ResetBtn = new Button();
+            ClearRowBtn = new Button();
+            ClearRowSelect = new NumericUpDown();
+            ScoreLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)setXBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)SetYBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)FillRowY).BeginInit();
             ((System.ComponentModel.ISupportInitialize)TickCount).BeginInit();
             ((System.ComponentModel.ISupportInitialize)AutoTickRate).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ClearRowSelect).BeginInit();
             SuspendLayout();
             // 
             // Render
@@ -114,7 +118,7 @@
             // 
             // FillRowY
             // 
-            FillRowY.Location = new Point(192, 184);
+            FillRowY.Location = new Point(192, 182);
             FillRowY.Name = "FillRowY";
             FillRowY.Size = new Size(120, 23);
             FillRowY.TabIndex = 7;
@@ -201,11 +205,40 @@
             ResetBtn.UseVisualStyleBackColor = true;
             ResetBtn.Click += ResetBtn_Click;
             // 
+            // ClearRowBtn
+            // 
+            ClearRowBtn.Location = new Point(442, 291);
+            ClearRowBtn.Name = "ClearRowBtn";
+            ClearRowBtn.Size = new Size(75, 23);
+            ClearRowBtn.TabIndex = 16;
+            ClearRowBtn.Text = "Clear Row";
+            ClearRowBtn.UseVisualStyleBackColor = true;
+            ClearRowBtn.Click += ClearRowBtn_Click;
+            // 
+            // ClearRowSelect
+            // 
+            ClearRowSelect.Location = new Point(319, 293);
+            ClearRowSelect.Name = "ClearRowSelect";
+            ClearRowSelect.Size = new Size(120, 23);
+            ClearRowSelect.TabIndex = 17;
+            // 
+            // ScoreLabel
+            // 
+            ScoreLabel.AutoSize = true;
+            ScoreLabel.Location = new Point(442, 345);
+            ScoreLabel.Name = "ScoreLabel";
+            ScoreLabel.Size = new Size(48, 15);
+            ScoreLabel.TabIndex = 18;
+            ScoreLabel.Text = "Score: 0";
+            // 
             // DebugForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(862, 664);
+            Controls.Add(ScoreLabel);
+            Controls.Add(ClearRowSelect);
+            Controls.Add(ClearRowBtn);
             Controls.Add(ResetBtn);
             Controls.Add(TickLabel);
             Controls.Add(AutoTickRate);
@@ -222,6 +255,7 @@
             Controls.Add(SetYBox);
             Controls.Add(setXBox);
             Controls.Add(Render);
+            KeyPreview = true;
             Name = "DebugForm";
             Text = "Debug";
             ((System.ComponentModel.ISupportInitialize)setXBox).EndInit();
@@ -229,6 +263,7 @@
             ((System.ComponentModel.ISupportInitialize)FillRowY).EndInit();
             ((System.ComponentModel.ISupportInitialize)TickCount).EndInit();
             ((System.ComponentModel.ISupportInitialize)AutoTickRate).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ClearRowSelect).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -252,5 +287,8 @@
         private System.Windows.Forms.Timer AutoTickTimer;
         private Label TickLabel;
         private Button ResetBtn;
+        private Button ClearRowBtn;
+        private NumericUpDown ClearRowSelect;
+        private Label ScoreLabel;
     }
 }

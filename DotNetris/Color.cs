@@ -8,7 +8,12 @@ public enum Color: byte
     Yellow,
     Green,
     Blue,
-    Purple
+    Purple,
+
+    /// <summary>
+    ///  Used internally for drawing, don't use
+    /// </summary>
+    Void
 
     
 }

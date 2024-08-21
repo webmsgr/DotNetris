@@ -24,7 +24,7 @@ namespace DotNetris
             SettingBtn.Click += new EventHandler(SettingBtn_Click);
             ExitBtn.Click += new EventHandler(ExitBtn_Click);
 
-            
+
         }
 
         private void ProfileBtn_Click1(object? sender, EventArgs e)
@@ -98,6 +98,11 @@ namespace DotNetris
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new DebugForm().ShowDialog();
         }
     }
 }
