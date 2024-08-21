@@ -12,9 +12,11 @@ namespace DotNetris
 {
     public partial class ProfileForm : Form
     {
-        public ProfileForm()
+        private MainMenuForm mainMenu;
+        public ProfileForm(MainMenuForm mainMenu)
         {
             InitializeComponent();
+            this.mainMenu = mainMenu;
             ExitBtn5.Click += new EventHandler(ExitBtn5_Click);
         }
 
