@@ -8,5 +8,31 @@ public enum Color: byte
     Yellow,
     Green,
     Blue,
-    Purple
+    Purple,
+
+    /// <summary>
+    ///  Used internally for drawing, don't use
+    /// </summary>
+    Void
+
+    
+}
+
+
+public static class ColorExtensions
+{
+    public static System.Drawing.Color ToDrawable(this Color c)
+    {
+        return c switch
+        {
+            Color.Empty => System.Drawing.Color.Black,
+            Color.Red => System.Drawing.Color.Red,
+            Color.Orange => System.Drawing.Color.Orange,
+            Color.Yellow => System.Drawing.Color.Yellow,
+            Color.Green => System.Drawing.Color.Green,
+            Color.Blue => System.Drawing.Color.Blue,
+            Color.Purple => System.Drawing.Color.Purple,
+            _ => throw new NotImplementedException(),
+        };
+    }
 }

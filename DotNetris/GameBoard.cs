@@ -33,6 +33,12 @@ namespace DotNetris
         }
         
         private Color[] board = new Color[Width*Height];
+
+        public Span<Color> GetBoard()
+        {
+            return board.AsSpan();
+        }
+
         /// <summary>
         /// Get a color at the specified position
         /// </summary>
@@ -96,6 +102,48 @@ namespace DotNetris
         {
             CheckCords(0, row);
             return board.AsSpan(row * Width, Width);
+        }
+
+
+        public bool DoesPieceCollide(int px, int py, Piece piece)
+        {
+            for (int pieceIndex = 0; pieceIndex < 9; pieceIndex++)
+            {
+                var x = pieceIndex % 3 + px;
+                var y = pieceIndex / 3 + py;
+                if (!piece.Data[pieceIndex])
+                {
+                    continue; // we dont need to care about this part
+                }
+                if (y >= Height || y < 0)
+                {
+                    return true;
+                }
+                else if (x >= Width || x < 0)
+                {
+                    return true;
+                } else if (Get(x, y) != Color.Empty)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public void ApplyPiece(int px, int py, Piece piece)
+        {
+            for (int pieceIndex = 0; pieceIndex < 9; pieceIndex++)
+            {
+                var x = pieceIndex % 3 + px;
+                var y = pieceIndex / 3 + py;
+                if (!piece.Data[pieceIndex])
+                {
+                    continue; // we dont need to care about this part
+                }
+                Set(x, y, piece.Color);
+
+            }
         }
     }
 }
