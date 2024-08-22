@@ -12,6 +12,5 @@ public class UserTest
         var user = User.CreateUser("Test", "password");
         // yeah thats a user alright
         Assert.AreNotEqual(user.Password, "password"); // did it get hashed
-        throw new NotImplementedException();
     }
 }
