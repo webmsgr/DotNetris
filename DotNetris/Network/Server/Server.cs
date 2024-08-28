@@ -253,10 +253,8 @@ public class Server
                     throw new NotImplementedException($"Packet type not implemented: {packet.PacketCase}");
             }
 
-            if (resp != null)
-            {
-                await Task.Run(() => WritePacket(readWStream, resp));
-            }
+            WritePacket(readWStream, resp);
+            
         }
     }
 
