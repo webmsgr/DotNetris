@@ -2,11 +2,7 @@
   "profiles": {
     "DotNetris Client": {
       "commandName": "Project",
-      "commandLineArgs": "client"
-    },
-    "DotNetris Server": {
-      "commandName": "Project",
-      "commandLineArgs": "server --Host 0.0.0.0 --Port 8080 --Password 12345 --DB \"Server=(localdb)\\mssqllocaldb;Database=DotNetris;Trusted_Connection=True\""
+      "commandLineArgs": ""
     }
   }
 }

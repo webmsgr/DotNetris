@@ -176,7 +176,7 @@ namespace DotNetris
 
         private void Reset()
         {
-            game = new Game("hollowheart".GetHashCode());
+            game = new Game("hollowheart".GetHashCode(), Difficulty.Normal);
             game.OnTick += OnTick;
             game.OnLose += OnLose;
             game.OnScoreUpdate += OnScoreUpdate;
