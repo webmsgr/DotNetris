@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DotNetris.Network.Server.Database.Models;
 
 namespace DotNetris.Network.Server.Database.Models
 {
@@ -39,4 +42,18 @@ namespace DotNetris.Network.Server.Database.Models
             set => RawReplay = value.Cast<byte>().ToArray();
         }
     }
+
+    public class DbReplayConfig : IEntityTypeConfiguration<DbReplay>
+    {
+        public void Configure(EntityTypeBuilder<DbReplay> builder)
+        {
+            builder
+                .Property(i => i.RawReplay)
+                .HasConversion(
+                    c => Compression.Zip(c),
+                    c => Compression.Unzip(c)
+                );
+        }
+    }
 }
+
