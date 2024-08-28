@@ -199,7 +199,7 @@ public class Client
         }
     }
     /// <summary>
-    /// Request a signed game settings from the server
+    /// Request a signed game settings from the server.
     /// </summary>
     /// <param name="settings">The game settings to sign</param>
     /// <returns>The signed game settings</returns>
@@ -309,8 +309,14 @@ public class Client
         }
     }
 
+    
 
-    /*public ReplayList GetMyReplays()
+    /// <summary>
+    /// Requests the user's replays from the server.
+    /// </summary>
+    /// <returns>The list of replays</returns>
+    /// <exception cref="Exception">On server error</exception>
+    public ReplayEntry[] GetMyReplays()
     {
         ClientToServerMessage packet = new ClientToServerMessage
         {
@@ -324,7 +330,31 @@ public class Client
             default:
                 throw new Exception("Invalid response packet");
         }
-    }*/
+    }
+    /// <summary>
+    /// Download a specific replay from the server
+    /// </summary>
+    /// <param name="id">The replay to download</param>
+    /// <returns>The replay data</returns>
+    /// <exception cref="Exception">On server error</exception>
+    public Replay DownloadReplay(int id)
+    {
+        ClientToServerMessage packet = new ClientToServerMessage
+        {
+            DownloadReplay = new DownloadReplay()
+            {
+                Id = id
+            }
+        };
+        var resp = SendRecv(packet);
+        switch (resp.PacketCase)
+        {
+            case ServerToClientMessage.PacketOneofCase.ReplayDownloadResult:
+                return resp.ReplayDownloadResult.Unwrap();
+            default:
+                throw new Exception("Invalid response packet");
+        }
+    }
     
     private ServerToClientMessage SendRecv(ClientToServerMessage message)
     {

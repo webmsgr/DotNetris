@@ -1,4 +1,6 @@
-﻿namespace DotNetris.Network.Protocol;
+﻿using Google.Protobuf;
+
+namespace DotNetris.Network.Protocol;
 
 partial class GeneralResult
 {
@@ -122,5 +124,109 @@ partial class RequestGameResponse
             default:
                 throw new NotImplementedException("invalid type for unwrap");
         }
+    }
+}
+
+partial class ReplayListResponse
+{
+    public static ReplayListResponse Failure(string message)
+    {
+        return new ReplayListResponse()
+        {
+            Fail = new Failure()
+            {
+                Message = message
+            }
+        };
+    }
+
+    public static ReplayListResponse Success(ReplayEntry[] replays)
+    {
+        return new ReplayListResponse()
+        {
+            Ok = new ReplayList()
+            {
+                Entries = { replays }
+            }
+        };
+    }
+
+    /// <summary>
+    /// Unwraps a ReplayListResponse, either throwing or returning the replay list
+    /// </summary>
+    /// <returns>The array of replays</returns>
+    /// <exception cref="Exception">When the contained result is an error</exception>
+
+    public ReplayEntry[] Unwrap()
+    {
+        switch (ResultCase)
+        {
+            case ResultOneofCase.Ok:
+                return Ok.Entries.ToArray();
+            case ResultOneofCase.Fail:
+                throw new Exception(Fail.Message);
+            default:
+                throw new NotImplementedException("invalid type for unwrap");
+        }
+    }
+}
+
+partial class DownloadReplayResponse
+{
+    public static DownloadReplayResponse Failure(string message)
+    {
+        return new DownloadReplayResponse()
+        {
+            Fail = new Failure()
+            {
+                Message = message
+            }
+        };
+    }
+
+    public static DownloadReplayResponse Success(Replay replay)
+    {
+        return new DownloadReplayResponse()
+        {
+            Ok = replay
+        };
+    }
+
+    /// <summary>
+    /// Unwraps a DownloadReplayResponse, either throwing or returning the replay list
+    /// </summary>
+    /// <returns>The replay</returns>
+    /// <exception cref="Exception">When the contained result is an error</exception>
+
+    public Replay Unwrap()
+    {
+        switch (ResultCase)
+        {
+            case ResultOneofCase.Ok:
+                return Ok;
+            case ResultOneofCase.Fail:
+                throw new Exception(Fail.Message);
+            default:
+                throw new NotImplementedException("invalid type for unwrap");
+        }
+    }
+}
+
+
+partial class Replay
+{
+    public Replay(SignedGameSettings settings, Inputs[] inputs)
+    {
+        Tag = settings;
+        Replay_ = ByteString.CopyFrom(
+                inputs.Select(i => (byte)i)
+                .ToArray()
+            );
+    }
+
+    public IEnumerable<Inputs> GetInputs()
+    {
+        return Replay_
+            .Select(i => (Inputs)i);
     }
 }
