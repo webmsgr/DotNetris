@@ -11,7 +11,7 @@ public class ClientConfig
     /// </summary>
     public required SecurityLevel security;
     
-    public readonly byte[]? password;
+    public byte[]? password;
     
     public void Validate()
     { 

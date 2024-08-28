@@ -15,9 +15,11 @@ public class ServerConfig
     public required SecurityLevel security;
 
 
-    public readonly X509Certificate? certificate;
+    public X509Certificate? certificate;
 
-    public readonly byte[]? password;
+    public byte[]? password;
+
+    public string ConnectionString;
 
     public void Validate()
     {
@@ -28,6 +30,11 @@ public class ServerConfig
         else if (security == SecurityLevel.Password && password == null)
         {
             throw new ArgumentException("A password is required when using Password Security.");
+        }
+
+        if (ConnectionString == null)
+        {
+            throw new ArgumentException("No connection string!");
         }
     }
 }

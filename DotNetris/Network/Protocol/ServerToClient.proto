@@ -1,32 +1,79 @@
 ﻿syntax = "proto3";
+package DotNetris.Network.Protocol;
 
-message LoginSuccess {
-  
-}
+import "Network/Protocol/Common.proto";
 
-message LoginFailure {
+message Failure {
   string message = 1;
 }
 
-message RegisterSuccess {
-  
-}
-
-message RegisterFailure {
+message Ok {
   string message = 1;
 }
 
-
+message GeneralResult {
+  oneof result {
+    Failure fail = 1;
+    Ok ok = 2;
+  }
+}
+  
 message Pong {
   bytes data = 1;
 }
 
+
+message ReplayEntry {
+  int32 id = 1;
+  string username = 2;
+  int32 score = 3;
+}
+
+message Leaderboard {
+  repeated ReplayEntry entries = 1;
+}
+
+message LeaderboardResponse {
+  oneof result {
+    Leaderboard ok = 1;
+    Failure failure = 2;
+  }
+}
+
+
+message RequestGameResponse {
+  oneof result {
+      SignedGameSettings ok = 1;
+      Failure failure = 2;
+  }
+}
+
+
+message ReplayList {
+  repeated ReplayEntry entries = 1;
+}
+
+message ReplayListResponse {
+  oneof result {
+      ReplayList ok = 1;
+      Failure fail = 2;
+  }
+}
+
+message DownloadReplayResponse {
+  oneof Result {
+      Replay ok = 1;
+      Failure fail = 2;
+  }
+}
+
 message ServerToClientMessage {
   oneof packet {
-    LoginSuccess loginSuccess = 1;
-    LoginFailure loginFailure = 2;
-    RegisterSuccess registerSuccess = 3;
-    RegisterFailure registerFailure = 4;
-    Pong pong = 5;
+    Pong pong = 1;
+    GeneralResult generalResult = 2;
+    LeaderboardResponse leaderboardResult = 3;
+    RequestGameResponse requestGameResult = 4;
+    ReplayListResponse replayListResult = 5;
+    DownloadReplayResponse replayDownloadResult = 6;
   }
 }

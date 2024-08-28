@@ -156,7 +156,44 @@ public class ChunkedStream: IDisposable
         inner.Write(length, 0, length.Length);
         inner.Write(data);
     }
-    
+
+    /// <summary>
+    /// Reads a single chunk of data asyncly from the inner stream. Contains the data from one call to WriteChunk.
+    /// </summary>
+    /// <returns>A single chunk of data</returns>
+    public async Task<byte[]> ReadChunkAsync(CancellationToken token)
+    {
+        // read the length bytes
+        byte[] lengthBytes = new byte[4];
+        await inner.ReadExactlyAsync(lengthBytes, token);
+        if (token.IsCancellationRequested)
+        {
+            return [];
+        }
+        if (BitConverter.IsLittleEndian)
+        {
+            lengthBytes = lengthBytes.Reverse().ToArray();
+        }
+        int length = BitConverter.ToInt32(lengthBytes);
+
+
+        byte[] packetData = new byte[length];
+        await inner.ReadExactlyAsync(packetData, token);
+        if (token.IsCancellationRequested)
+        {
+            return [];
+        }
+        if (reader != null)
+        {
+            byte[] decryptedData = new byte[packetData.Length - IncrementalXChaCha20Poly1305.TagSize];
+            reader.Pull(decryptedData, packetData);
+            return decryptedData;
+        }
+        else
+        {
+            return packetData.ToArray();
+        }
+    }
     
     /// <summary>
     /// Reads a single chunk of data from the inner stream. Contains the data from one call to WriteChunk.
