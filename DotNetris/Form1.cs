@@ -1,3 +1,5 @@
+using DotNetris.Network.Client;
+
 namespace DotNetris
 {
     public partial class MainMenuForm : Form
@@ -56,6 +58,18 @@ namespace DotNetris
 
         private void LogInRegBtn_Click(object sender, EventArgs e)
         {
+
+            if (!ClientSingleton.IsConnecteed)
+            {
+                MessageBox.Show("Not connected to a server! See settings");
+                return;
+            }
+
+            if (ClientSingleton.IsLoggedIn)
+            {
+                MessageBox.Show("Already logged in!");
+            }
+
             loginRegisterForm.Show();
 
             this.Hide();
@@ -63,6 +77,11 @@ namespace DotNetris
 
         private void ProfileBtn_Click(object sender, EventArgs e)
         {
+            if (!ClientSingleton.IsLoggedIn)
+            {
+                MessageBox.Show("You must be logged in to view your profile!");
+                return;
+            }
             frm.Show();
 
             this.Hide();

@@ -1,0 +1,65 @@
+﻿syntax = "proto3";
+
+package DotNetris.Network.Protocol;
+
+import public "Network/Protocol/Common.proto";
+
+message Login {
+  string username = 1;
+  string password = 2;
+}
+
+message Register {
+  string username = 1;
+  string password = 2;
+}
+
+message Ping {
+  bytes data = 1;
+}
+
+message FetchLeaderboard {
+  int32 start = 1;
+  int32 end = 2;
+}
+
+message UploadReplay {
+  Replay replay = 1;
+}
+
+message RequestGame {
+  GameSettings settings = 1;
+}
+
+
+message DeleteAccount {
+  string password = 1;
+}
+
+message ChangePassword {
+  string oldPassword = 1;
+  string newPassword = 2;
+}
+
+message GetMyReplays {
+  
+}
+
+message DownloadReplay {
+  int32 id = 1;
+}
+
+message ClientToServerMessage {
+  oneof packet {
+    Login login = 1;
+    Register register = 2;
+    Ping ping = 3;
+    FetchLeaderboard leaderboard = 4;
+    UploadReplay uploadReply = 5;
+    RequestGame requestGame = 6;
+    DeleteAccount deleteAccount = 7;
+    ChangePassword changePassword = 8;
+    GetMyReplays getReplays = 9;
+    DownloadReplay downloadReplay = 10;
+  }
+}

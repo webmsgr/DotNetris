@@ -29,56 +29,48 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginRegisterForm));
-            LoginBtn2 = new Button();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            RegisterButton = new Button();
+            LoginUsername = new TextBox();
             UsernameLbl = new Label();
             PasswordLbl = new Label();
             LoginBtn1 = new Button();
             OrLbl = new Label();
             LoginLbl = new Label();
-            checkBox1 = new CheckBox();
+            StayLoggedIn = new CheckBox();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
-            textBox3 = new TextBox();
+            RegisterUsername = new TextBox();
             label5 = new Label();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
             label6 = new Label();
             ExitBtn4 = new Button();
+            LoginPassword = new MaskedTextBox();
+            RegisterPassword = new MaskedTextBox();
+            RegisterPasswordConfirm = new MaskedTextBox();
             SuspendLayout();
             // 
-            // LoginBtn2
+            // RegisterButton
             // 
-            LoginBtn2.BackColor = System.Drawing.Color.Black;
-            LoginBtn2.Font = new Font("Comic Sans MS", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LoginBtn2.ForeColor = System.Drawing.Color.MediumPurple;
-            LoginBtn2.Location = new Point(788, 302);
-            LoginBtn2.Name = "LoginBtn2";
-            LoginBtn2.Size = new Size(145, 71);
-            LoginBtn2.TabIndex = 2;
-            LoginBtn2.Text = "Log In";
-            LoginBtn2.UseVisualStyleBackColor = false;
+            RegisterButton.BackColor = System.Drawing.Color.Black;
+            RegisterButton.Font = new Font("Comic Sans MS", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            RegisterButton.ForeColor = System.Drawing.Color.MediumPurple;
+            RegisterButton.Location = new Point(788, 302);
+            RegisterButton.Name = "RegisterButton";
+            RegisterButton.Size = new Size(145, 71);
+            RegisterButton.TabIndex = 2;
+            RegisterButton.Text = "Register";
+            RegisterButton.UseVisualStyleBackColor = false;
+            RegisterButton.Click += RegisterButton_Click;
             // 
-            // textBox1
+            // LoginUsername
             // 
-            textBox1.BackColor = System.Drawing.Color.Black;
-            textBox1.ForeColor = System.Drawing.Color.White;
-            textBox1.Location = new Point(195, 149);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(184, 23);
-            textBox1.TabIndex = 3;
-            // 
-            // textBox2
-            // 
-            textBox2.BackColor = System.Drawing.Color.Black;
-            textBox2.ForeColor = System.Drawing.Color.White;
-            textBox2.Location = new Point(195, 209);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(184, 23);
-            textBox2.TabIndex = 4;
+            LoginUsername.BackColor = System.Drawing.Color.Black;
+            LoginUsername.ForeColor = System.Drawing.Color.White;
+            LoginUsername.Location = new Point(195, 149);
+            LoginUsername.Name = "LoginUsername";
+            LoginUsername.Size = new Size(184, 23);
+            LoginUsername.TabIndex = 3;
             // 
             // UsernameLbl
             // 
@@ -116,6 +108,7 @@
             LoginBtn1.TabIndex = 7;
             LoginBtn1.Text = "Log In";
             LoginBtn1.UseVisualStyleBackColor = false;
+            LoginBtn1.Click += LoginBtn1_Click;
             // 
             // OrLbl
             // 
@@ -142,18 +135,19 @@
             LoginLbl.Text = "Already have an account?";
             LoginLbl.Click += LoginLbl_Click;
             // 
-            // checkBox1
+            // StayLoggedIn
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.BackColor = System.Drawing.Color.Transparent;
-            checkBox1.Font = new Font("Comic Sans MS", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            checkBox1.ForeColor = System.Drawing.Color.Cyan;
-            checkBox1.Location = new Point(51, 326);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(168, 27);
-            checkBox1.TabIndex = 10;
-            checkBox1.Text = "Keep me logged in";
-            checkBox1.UseVisualStyleBackColor = false;
+            StayLoggedIn.AutoSize = true;
+            StayLoggedIn.BackColor = System.Drawing.Color.Transparent;
+            StayLoggedIn.Font = new Font("Comic Sans MS", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            StayLoggedIn.ForeColor = System.Drawing.Color.Cyan;
+            StayLoggedIn.Location = new Point(81, 326);
+            StayLoggedIn.Name = "StayLoggedIn";
+            StayLoggedIn.Size = new Size(143, 27);
+            StayLoggedIn.TabIndex = 10;
+            StayLoggedIn.Text = "Save Password";
+            StayLoggedIn.UseVisualStyleBackColor = false;
+            StayLoggedIn.CheckedChanged += StayLoggedIn_CheckedChanged;
             // 
             // label1
             // 
@@ -204,14 +198,14 @@
             label4.Text = "Desired Username: ";
             label4.TextAlign = ContentAlignment.TopCenter;
             // 
-            // textBox3
+            // RegisterUsername
             // 
-            textBox3.BackColor = System.Drawing.Color.Black;
-            textBox3.ForeColor = System.Drawing.Color.White;
-            textBox3.Location = new Point(749, 151);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(184, 23);
-            textBox3.TabIndex = 15;
+            RegisterUsername.BackColor = System.Drawing.Color.Black;
+            RegisterUsername.ForeColor = System.Drawing.Color.White;
+            RegisterUsername.Location = new Point(749, 151);
+            RegisterUsername.Name = "RegisterUsername";
+            RegisterUsername.Size = new Size(184, 23);
+            RegisterUsername.TabIndex = 15;
             // 
             // label5
             // 
@@ -224,24 +218,6 @@
             label5.TabIndex = 16;
             label5.Text = "Password: ";
             label5.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // textBox4
-            // 
-            textBox4.BackColor = System.Drawing.Color.Black;
-            textBox4.ForeColor = System.Drawing.Color.White;
-            textBox4.Location = new Point(749, 196);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(184, 23);
-            textBox4.TabIndex = 17;
-            // 
-            // textBox5
-            // 
-            textBox5.BackColor = System.Drawing.Color.Black;
-            textBox5.ForeColor = System.Drawing.Color.White;
-            textBox5.Location = new Point(749, 252);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(184, 23);
-            textBox5.TabIndex = 18;
             // 
             // label6
             // 
@@ -267,6 +243,36 @@
             ExitBtn4.Text = "Exit to Main Menu";
             ExitBtn4.UseVisualStyleBackColor = false;
             // 
+            // LoginPassword
+            // 
+            LoginPassword.BackColor = System.Drawing.Color.Black;
+            LoginPassword.ForeColor = System.Drawing.Color.White;
+            LoginPassword.Location = new Point(195, 209);
+            LoginPassword.Name = "LoginPassword";
+            LoginPassword.Size = new Size(184, 23);
+            LoginPassword.TabIndex = 21;
+            LoginPassword.UseSystemPasswordChar = true;
+            // 
+            // RegisterPassword
+            // 
+            RegisterPassword.BackColor = System.Drawing.Color.Black;
+            RegisterPassword.ForeColor = System.Drawing.Color.White;
+            RegisterPassword.Location = new Point(749, 201);
+            RegisterPassword.Name = "RegisterPassword";
+            RegisterPassword.Size = new Size(184, 23);
+            RegisterPassword.TabIndex = 22;
+            RegisterPassword.UseSystemPasswordChar = true;
+            // 
+            // RegisterPasswordConfirm
+            // 
+            RegisterPasswordConfirm.BackColor = System.Drawing.Color.Black;
+            RegisterPasswordConfirm.ForeColor = System.Drawing.Color.White;
+            RegisterPasswordConfirm.Location = new Point(749, 252);
+            RegisterPasswordConfirm.Name = "RegisterPasswordConfirm";
+            RegisterPasswordConfirm.Size = new Size(184, 23);
+            RegisterPasswordConfirm.TabIndex = 23;
+            RegisterPasswordConfirm.UseSystemPasswordChar = true;
+            // 
             // LoginRegisterForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -274,25 +280,25 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1038, 450);
+            Controls.Add(RegisterPasswordConfirm);
+            Controls.Add(RegisterPassword);
+            Controls.Add(LoginPassword);
             Controls.Add(ExitBtn4);
             Controls.Add(label6);
-            Controls.Add(textBox5);
-            Controls.Add(textBox4);
             Controls.Add(label5);
-            Controls.Add(textBox3);
+            Controls.Add(RegisterUsername);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(checkBox1);
+            Controls.Add(StayLoggedIn);
             Controls.Add(LoginLbl);
             Controls.Add(OrLbl);
             Controls.Add(LoginBtn1);
             Controls.Add(PasswordLbl);
             Controls.Add(UsernameLbl);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(LoginBtn2);
+            Controls.Add(LoginUsername);
+            Controls.Add(RegisterButton);
             Name = "LoginRegisterForm";
             Text = "Login/Register";
             FormClosing += LoginRegisterForm_FormClosing;
@@ -302,24 +308,24 @@
 
         #endregion
 
-        private Button LoginBtn2;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private Button RegisterButton;
+        private TextBox LoginUsername;
         private Label UsernameLbl;
         private Label PasswordLbl;
         private Button LoginBtn1;
         private Label OrLbl;
         private Label LoginLbl;
-        private CheckBox checkBox1;
+        private CheckBox StayLoggedIn;
         private Label label1;
         private Label label2;
         private Label label3;
         private Label label4;
-        private TextBox textBox3;
+        private TextBox RegisterUsername;
         private Label label5;
-        private TextBox textBox4;
-        private TextBox textBox5;
         private Label label6;
         private Button ExitBtn4;
+        private MaskedTextBox LoginPassword;
+        private MaskedTextBox RegisterPassword;
+        private MaskedTextBox RegisterPasswordConfirm;
     }
 }
