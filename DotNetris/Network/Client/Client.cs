@@ -273,6 +273,10 @@ public class Client
         switch (resp.PacketCase)
         {
             case ServerToClientMessage.PacketOneofCase.GeneralResult:
+                if (resp.GeneralResult.ResultCase == GeneralResult.ResultOneofCase.Ok)
+                {
+                    LoggedIn = false;
+                }
                 return resp.GeneralResult.Unwrap();
             default:
                 throw new Exception("Invalid response packet");

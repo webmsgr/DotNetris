@@ -217,6 +217,39 @@ public class Server
                     await ctx.SaveChangesAsync(cancel.Token);
                     resp.GeneralResult = GeneralResult.Success("Successfully registered and logged in!");
                     break;
+                case ClientToServerMessage.PacketOneofCase.DeleteAccount:
+                    if (user.User == null)
+                    {
+                        resp.GeneralResult = GeneralResult.Failure("Not logged in");
+                        break;
+                    }
+                    // check password
+                    if (!Crypto.VerifyPassword(user.User.Password, packet.DeleteAccount.Password))
+                    {
+                        resp.GeneralResult = GeneralResult.Failure("Invalid password");
+                        break;
+                    }
+                    ctx.Users.Remove(user.User);
+                    await ctx.SaveChangesAsync(cancel.Token);
+                    resp.GeneralResult = GeneralResult.Success("Account deleted");
+                    user.User = null;
+                    break;
+                case ClientToServerMessage.PacketOneofCase.ChangePassword: 
+                    if (user.User == null)
+                    {
+                        resp.GeneralResult = GeneralResult.Failure("Not logged in");
+                        break;
+                    }
+                    // check password
+                    if (!Crypto.VerifyPassword(user.User.Password, packet.ChangePassword.OldPassword))
+                    {
+                        resp.GeneralResult = GeneralResult.Failure("Invalid password");
+                        break;
+                    }
+                    user.User.Password = Crypto.HashPassword(packet.ChangePassword.NewPassword);
+                    await ctx.SaveChangesAsync(cancel.Token);
+                    resp.GeneralResult = GeneralResult.Success("Password changed");
+                    break;
                 default:
                     throw new NotImplementedException($"Packet type not implemented: {packet.PacketCase}");
             }
