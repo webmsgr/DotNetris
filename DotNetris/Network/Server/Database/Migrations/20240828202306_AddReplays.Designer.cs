@@ -3,6 +3,7 @@ using DotNetris.Network.Server.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DotNetris.Network.Server.Database.Migrations
 {
     [DbContext(typeof(DotNetrisContext))]
-    partial class DotNetrisContextModelSnapshot : ModelSnapshot
+    [Migration("20240828202306_AddReplays")]
+    partial class AddReplays
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,9 +31,6 @@ namespace DotNetris.Network.Server.Database.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<byte>("RawDifficulty")
-                        .HasColumnType("tinyint");
 
                     b.Property<byte[]>("RawReplay")
                         .IsRequired()

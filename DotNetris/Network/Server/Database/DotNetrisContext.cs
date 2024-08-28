@@ -7,6 +7,7 @@ public class DotNetrisContext : DbContext
 {
     
     public DbSet<User> Users { get; set; }
+    public DbSet<DbReplay> Replays { get; set; }
     private string ConnectionString;
 
     public DotNetrisContext()

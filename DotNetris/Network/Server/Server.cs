@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.ComponentModel;
 using System.Net;
 using System.Net.Security;
 using System.Net.Sockets;
@@ -80,8 +81,42 @@ public class Server
             {
                 break;
             }
+            var user = await ctx.Users.FirstOrDefaultAsync(i => i.Id == next.UserID, cancel);
+            if (user == null)
+            {
+                Console.WriteLine("Invalid user for queued replay, discarding");
+                continue;
+            }
+            Console.WriteLine($"Got a replay for user {next.UserID}");
             // todo: check the replay
-            
+            bool lost = false;
+            int inputCount = 0;
+            Game game = new Game(next.Replay.Tag);
+            game.OnLose += (_, _) =>
+            {
+                lost = true;
+            };
+            foreach (var input in next.Replay.GetInputs())
+            {
+                game.Inputs = input;
+                game.Tick();
+                inputCount++;
+                if (lost)
+                {
+                    break;
+                }
+            }
+            Console.WriteLine($"Replay had {inputCount} inputs with a score of {game.Score}");
+            var entry = new DbReplay()
+            {
+                RawReplay = next.Replay.Replay_.ToByteArray(),
+                Score = game.Score,
+                User = user,
+                RawDifficulty = (byte)DifficultyExt.FromNetwork(next.Replay.Tag.Settings.Difficulty)
+            };
+            ctx.Replays.Add(entry);
+            await ctx.SaveChangesAsync(cancel);
+            Console.WriteLine("Replay saved!");
         }
     }
 
@@ -248,6 +283,68 @@ public class Server
                     user.User.Password = Crypto.HashPassword(packet.ChangePassword.NewPassword);
                     await ctx.SaveChangesAsync(cancel.Token);
                     resp.GeneralResult = GeneralResult.Success("Password changed");
+                    break;
+                case ClientToServerMessage.PacketOneofCase.RequestGame:
+                    if (user.User == null)
+                    {
+                        resp.RequestGameResult = RequestGameResponse.Fail("Not logged in");
+                        break;
+                    }
+
+                    // generate a new seed
+                    var rawSeed = new byte[4];
+                    Geralt.SecureRandom.Fill(rawSeed);
+                    packet.RequestGame.Settings.Seed = BitConverter.ToInt32(rawSeed);
+
+
+                    // sign the game settings
+                    var signed = SignedGameSettings.Sign(packet.RequestGame.Settings, user.User);
+                    await ctx.SaveChangesAsync(cancel.Token); // save this token to the database
+                    resp.RequestGameResult = RequestGameResponse.Success(signed);
+                    break;
+                case ClientToServerMessage.PacketOneofCase.UploadReply:
+                    if (user.User == null)
+                    {
+                        resp.GeneralResult = GeneralResult.Failure("Not logged in");
+                        break;
+                    }
+                    // verify the replay
+                    if (!packet.UploadReply.Replay.Tag.Verify(user.User))
+                    {
+                        resp.GeneralResult = GeneralResult.Failure("Invalid signature");
+                        break;
+                    }
+
+                    await ctx.SaveChangesAsync(cancel.Token); // save the updated user
+                    // this replay is valid, throw it into the queue
+                    ReplayTaskQueue.Enqueue(new ReplayTaskEntry()
+                    {
+                        Replay = packet.UploadReply.Replay,
+                        UserID = user.User.Id
+                    });
+                    resp.GeneralResult = GeneralResult.Success("Replay accepted.");
+                    break;
+                case ClientToServerMessage.PacketOneofCase.Leaderboard:
+                    int start = packet.Leaderboard.Start;
+                    int end = packet.Leaderboard.End;
+                    if (end < start || start < 0 || end < 0)
+                    {
+                       resp.LeaderboardResult = LeaderboardResponse.Fail("Invalid starting/end");
+                       break;
+                    }
+
+                    List<ReplayEntry> entries = await ctx.Replays
+                        .OrderByDescending(i => i.Score)
+                        .Take(new Range(start, end))
+                        .Select(i => new ReplayEntry()
+                        {
+                            Id = i.Id,
+                            Username = i.User.Username,
+                            Difficulty = i.Difficulty.ToNetwork(),
+                            Score = (long)i.Score
+                        })
+                        .ToListAsync();
+                    resp.LeaderboardResult = LeaderboardResponse.Success(entries);
                     break;
                 default:
                     throw new NotImplementedException($"Packet type not implemented: {packet.PacketCase}");
