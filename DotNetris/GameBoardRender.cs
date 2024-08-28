@@ -14,6 +14,9 @@ namespace DotNetris
     {
         public Game game;
 
+        private BufferedGraphicsContext context;
+        private BufferedGraphics grafx;
+
         public const int TileSize = 32; // in pixels
 
         private Color[] lastFrame = Enumerable.Repeat(Color.Void, GameBoard.Width * GameBoard.Height).ToArray();
@@ -32,22 +35,35 @@ namespace DotNetris
             InitializeComponent();
             Height = GameBoard.Height * GameBoardRender.TileSize;
             Width = GameBoard.Width * GameBoardRender.TileSize;
-
-            Invalidate();
+            context = BufferedGraphicsManager.Current;
+            context.MaximumBuffer = new Size(this.Width + 1, this.Height + 1);
+            grafx = context.Allocate(this.CreateGraphics(),
+                new Rectangle(0, 0, this.Width, this.Height));
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            Draw();
         }
 
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
 
-            // draw map
+            // draw
+            grafx.Render(pe.Graphics);
 
-            // background
+        }
 
+        public void Draw()
+        {
+            DrawToBuffer(grafx.Graphics);
+            Refresh();
+        }
+
+        private void DrawToBuffer(Graphics g)
+        {
             Color[] drawTarget = Enumerable.Repeat(Color.Empty, GameBoard.Width * GameBoard.Height).ToArray();
 
             //pe.Graphics.FillRectangle(new SolidBrush(System.Drawing.Color.Black), 0, 0, GameBoard.Width * GameBoardRender.TileSize, GameBoard.Height * GameBoardRender.TileSize);
-            
+
             //var pen = new Pen(System.Drawing.Color.Black);
             game.Board.GetBoard().CopyTo(drawTarget); // draw the board
 
@@ -61,7 +77,7 @@ namespace DotNetris
                 {
                     // write the piece
                     drawTarget[index] = game.CurrentPiece.Color;
-                } 
+                }
             }
 
             // diff the drawTarget with the last board
@@ -75,6 +91,7 @@ namespace DotNetris
                     {
                         diff.Add(drawTarget[index], new List<Rectangle>());
                     }
+
                     var x = index % GameBoard.Width;
                     var y = index / GameBoard.Width;
                     var real_x = x * TileSize;
@@ -83,13 +100,14 @@ namespace DotNetris
                     diff[drawTarget[index]].Add(new Rectangle(real_x, real_y, TileSize, TileSize));
                 }
             }
+
             // draw the diff
             Console.Out.WriteLine("hello");
             foreach (var toDraw in diff)
             {
 
                 var fill = new SolidBrush(toDraw.Key.ToDrawable());
-                pe.Graphics.FillRectangles(fill, toDraw.Value.ToArray());
+                g.FillRectangles(fill, toDraw.Value.ToArray());
             }
         }
     }

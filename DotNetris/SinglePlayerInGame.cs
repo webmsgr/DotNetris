@@ -134,7 +134,7 @@ namespace DotNetris
         private void GameTick_Tick(object sender, EventArgs e)
         {
             game.Tick();
-            gameBoardRender1.Invalidate();
+            gameBoardRender1.Draw();
         }
     }
 }

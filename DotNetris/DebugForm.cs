@@ -117,19 +117,19 @@ namespace DotNetris
         private void SetButton_Click(object sender, EventArgs e)
         {
             game.Board.Set((int)setXBox.Value, (int)SetYBox.Value, (Color)SetColorBox.SelectedItem!);
-            Render.Invalidate();
+            Render.Draw();
         }
 
         private void FillRowBtn_Click(object sender, EventArgs e)
         {
             game.Board.GetRow((int)FillRowY.Value).Fill((Color)FillRowColor.SelectedItem!);
-            Render.Invalidate();
+            Render.Draw();
         }
 
         private void FillAllBtn_Click(object sender, EventArgs e)
         {
             game.Board.GetBoard().Fill((Color)FillAllColor.SelectedItem!);
-            Render.Invalidate();
+            Render.Draw();
         }
 
         private void Render_Click(object sender, EventArgs e)
@@ -150,7 +150,7 @@ namespace DotNetris
             if (AutoTickEnabled.Checked)
             {
                 game.Tick();
-                Render.Invalidate();
+                Render.Draw();
             }
         }
 
@@ -171,7 +171,7 @@ namespace DotNetris
             {
                 game.Tick();
             }
-            Render.Invalidate();
+            Render.Draw();
         }
 
         private void Reset()
@@ -181,7 +181,7 @@ namespace DotNetris
             game.OnLose += OnLose;
             game.OnScoreUpdate += OnScoreUpdate;
             Render.game = game;
-            Render.Invalidate();
+            Render.Draw();
             TickLabel.Text = "0 Ticks";
             GameTickCount = 0;
             ScoreLabel.Text = "Score: 0";
@@ -195,7 +195,7 @@ namespace DotNetris
         private void ClearRowBtn_Click(object sender, EventArgs e)
         {
             game.Board.ClearLine((int)ClearRowSelect.Value);
-            Render.Invalidate();
+            Render.Draw();
         }
     }
 }
