@@ -188,6 +188,10 @@ public class Game
                 {
                     OnLose.Invoke(this, null);
                 }
+                else
+                {
+                    OnNewPiece.Invoke(this, null);
+                }
             }
         }
 
@@ -245,4 +249,5 @@ public class Game
     public event EventHandler<Inputs> OnTick = (sender, inputs) => {};
     public event EventHandler OnLose = (sender, args) => {};
     public event EventHandler<ulong> OnScoreUpdate = (sender, e) => { };
+    public event EventHandler OnNewPiece = (sender, args) => { };
 }

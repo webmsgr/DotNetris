@@ -10,6 +10,14 @@ namespace DotNetris
 {
     public partial class PieceRender : Control
     {
+        public PieceRender() : base()
+        {
+            InitializeComponent();
+            Height = 3 * GameBoardRender.TileSize;
+            Width = 3 * GameBoardRender.TileSize;
+        }
+
+
         private Piece _piece = new Piece(new[] { false, false, false, false, false, false, false, false, false },
             Color.Empty);
 
