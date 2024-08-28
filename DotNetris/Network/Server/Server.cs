@@ -206,7 +206,6 @@ public class Server
                     var existing = await ctx.Users.FirstOrDefaultAsync(u => u.Username == register.Username, cancel.Token);
                     if (existing != null)
                     {
-                        // no user?
                         resp.GeneralResult = GeneralResult.Failure("Username taken");
                         break;
                     }
