@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DotNetris.Network.Server.Database.Models;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace DotNetris.Network.Server.Database.Models
 {
@@ -51,7 +52,11 @@ namespace DotNetris.Network.Server.Database.Models
                 .Property(i => i.RawReplay)
                 .HasConversion(
                     c => Compression.Zip(c),
-                    c => Compression.Unzip(c)
+                    c => Compression.Unzip(c),
+                    new ValueComparer<byte[]>(
+                        (c1, c2) => c1.SequenceEqual(c2),
+                        c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+                        c => c.ToArray()) // from https://learn.microsoft.com/en-us/ef/core/modeling/value-comparers?tabs=ef5#overriding-the-default-comparer
                 );
         }
     }
