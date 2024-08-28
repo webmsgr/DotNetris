@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetris", "DotNetris\DotN
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetris.Tests", "DotNetris.Tests\DotNetris.Tests.csproj", "{EB3E3A74-5E54-4C6F-9D09-D7772D53F185}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetris.Server", "DotNetris.Server\DotNetris.Server.csproj", "{7E429313-D617-426A-9890-7938F0A3C965}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{EB3E3A74-5E54-4C6F-9D09-D7772D53F185}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB3E3A74-5E54-4C6F-9D09-D7772D53F185}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB3E3A74-5E54-4C6F-9D09-D7772D53F185}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E429313-D617-426A-9890-7938F0A3C965}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E429313-D617-426A-9890-7938F0A3C965}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E429313-D617-426A-9890-7938F0A3C965}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E429313-D617-426A-9890-7938F0A3C965}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

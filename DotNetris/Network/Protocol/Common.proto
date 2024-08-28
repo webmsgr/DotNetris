@@ -1,0 +1,25 @@
+﻿syntax = "proto3";
+
+package DotNetris.Network.Protocol;
+
+enum Difficulty {
+  Easy = 0;
+  Medium = 1;
+  Hard = 2;
+}
+
+message GameSettings {
+  Difficulty difficulty = 1;
+}
+
+message SignedGameSettings {
+  GameSettings settings = 1;
+  bytes userTag = 2;
+  bytes signature = 3;
+}
+
+
+message Replay {
+  SignedGameSettings tag = 1;
+  bytes replay = 2;
+}

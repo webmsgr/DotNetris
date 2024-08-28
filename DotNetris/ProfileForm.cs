@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DotNetris.Network.Client;
 
 namespace DotNetris
 {
@@ -20,10 +21,6 @@ namespace DotNetris
             ExitBtn5.Click += new EventHandler(ExitBtn5_Click);
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void ExitBtn5_Click(object sender, EventArgs e)
         {
@@ -37,6 +34,35 @@ namespace DotNetris
             this.Close();
         }
 
-        
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+            try
+            {
+                MessageBox.Show(ClientSingleton.client!.DeleteAccount(DeletePasswordBox.Text));
+                ExitBtn5_Click(sender, e); // trick it into exiting
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ChangePasswordBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MessageBox.Show(ClientSingleton.client!.ChangePassword(ChangePasswordOld.Text, ChangePasswordNew.Text));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
