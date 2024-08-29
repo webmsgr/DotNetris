@@ -70,6 +70,7 @@ namespace DotNetris
             if (ClientSingleton.IsLoggedIn)
             {
                 MessageBox.Show("Already logged in!");
+                return;
             }
 
             loginRegisterForm.Show();
