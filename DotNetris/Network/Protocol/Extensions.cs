@@ -184,7 +184,7 @@ partial class DownloadReplayResponse
         };
     }
 
-    public static DownloadReplayResponse Success(Replay replay)
+    public static DownloadReplayResponse Success(SerializedReplay replay)
     {
         return new DownloadReplayResponse()
         {
@@ -198,7 +198,7 @@ partial class DownloadReplayResponse
     /// <returns>The replay</returns>
     /// <exception cref="Exception">When the contained result is an error</exception>
 
-    public Replay Unwrap()
+    public SerializedReplay Unwrap()
     {
         switch (ResultCase)
         {
@@ -228,5 +228,14 @@ partial class Replay
     {
         return Replay_
             .Select(i => (Inputs)i);
+    }
+}
+
+partial class SerializedReplay
+{
+    public SerializedReplay(Replay replay)
+    {
+        Settings = replay.Tag.Settings;
+        this.replay_ = replay.Replay_;
     }
 }

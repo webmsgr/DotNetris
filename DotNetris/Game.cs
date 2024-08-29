@@ -1,4 +1,6 @@
-﻿namespace DotNetris;
+﻿using DotNetris.Network.Protocol;
+
+namespace DotNetris;
 /// <summary>
 /// Represents a single game
 /// </summary>
@@ -33,6 +35,40 @@ public class Game
         Board = new GameBoard();
         this.Difficulty = diff;
     }
+    /// <summary>
+    /// Create a game from a set of signed game settings
+    /// </summary>
+    /// <param name="settings">The settings to use</param>
+    public Game(SignedGameSettings settings)
+    {
+        Rand = new Random(settings.Settings.Seed);
+        Bag = new PiecePeekBag(new PieceBag(Rand));
+        CurrentPiece = Bag.Next();
+        PiecePosition = (3, 1);
+        Board = new GameBoard();
+        this.Difficulty = DifficultyExt.FromNetwork(settings.Settings.Difficulty);
+        IsOnline = true;
+        SignedGameSettings = settings;
+    }
+
+    /// <summary>
+    /// Create a game from a set of game settings
+    /// </summary>
+    /// <param name="settings">The settings to use</param>
+    public Game(GameSettings settings)
+    {
+        Rand = new Random(settings.Seed);
+        Bag = new PiecePeekBag(new PieceBag(Rand));
+        CurrentPiece = Bag.Next();
+        PiecePosition = (3, 1);
+        Board = new GameBoard();
+        this.Difficulty = DifficultyExt.FromNetwork(settings.Difficulty);
+    }
+
+
+    public bool IsOnline = false;
+    public SignedGameSettings? SignedGameSettings = null;
+    public List<Inputs> Replay = new List<Inputs>();
 
     private Difficulty _difficulty;
 
@@ -173,6 +209,10 @@ public class Game
     {
         OnTick.Invoke(this, Inputs);
         InputHelper.Tick(Inputs);
+        if (IsOnline)
+        {
+            Replay.Add(Inputs);
+        }
         if (PieceDropSpeed.Tick())
         {
             if (!Board.DoesPieceCollide(PiecePosition.Item1, PiecePosition.Item2+1, CurrentPiece))

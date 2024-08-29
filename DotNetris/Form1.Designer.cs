@@ -37,6 +37,7 @@
             SettingBtn = new Button();
             ProfileBtn = new Button();
             button1 = new Button();
+            LeaderboardBtn = new Button();
             SuspendLayout();
             // 
             // DotNetrisLbl
@@ -58,7 +59,7 @@
             MultiPlayerBtn.BackColor = System.Drawing.Color.Black;
             MultiPlayerBtn.Font = new Font("Comic Sans MS", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             MultiPlayerBtn.ForeColor = System.Drawing.Color.FromArgb(255, 128, 0);
-            MultiPlayerBtn.Location = new Point(266, 135);
+            MultiPlayerBtn.Location = new Point(266, 241);
             MultiPlayerBtn.Name = "MultiPlayerBtn";
             MultiPlayerBtn.Size = new Size(211, 40);
             MultiPlayerBtn.TabIndex = 1;
@@ -70,7 +71,7 @@
             SinglePlayerBtn.BackColor = System.Drawing.Color.Black;
             SinglePlayerBtn.Font = new Font("Comic Sans MS", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             SinglePlayerBtn.ForeColor = System.Drawing.Color.Yellow;
-            SinglePlayerBtn.Location = new Point(266, 205);
+            SinglePlayerBtn.Location = new Point(266, 196);
             SinglePlayerBtn.Name = "SinglePlayerBtn";
             SinglePlayerBtn.Size = new Size(211, 39);
             SinglePlayerBtn.TabIndex = 2;
@@ -82,7 +83,7 @@
             ExitBtn.BackColor = System.Drawing.Color.Black;
             ExitBtn.Font = new Font("Comic Sans MS", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             ExitBtn.ForeColor = System.Drawing.Color.FromArgb(128, 128, 255);
-            ExitBtn.Location = new Point(266, 350);
+            ExitBtn.Location = new Point(266, 391);
             ExitBtn.Name = "ExitBtn";
             ExitBtn.Size = new Size(211, 47);
             ExitBtn.TabIndex = 4;
@@ -94,7 +95,7 @@
             LogInRegBtn.BackColor = System.Drawing.Color.Black;
             LogInRegBtn.Font = new Font("Comic Sans MS", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LogInRegBtn.ForeColor = System.Drawing.Color.Cyan;
-            LogInRegBtn.Location = new Point(266, 270);
+            LogInRegBtn.Location = new Point(266, 339);
             LogInRegBtn.Name = "LogInRegBtn";
             LogInRegBtn.Size = new Size(211, 46);
             LogInRegBtn.TabIndex = 5;
@@ -135,12 +136,26 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // LeaderboardBtn
+            // 
+            LeaderboardBtn.BackColor = System.Drawing.Color.Black;
+            LeaderboardBtn.Font = new Font("Comic Sans MS", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LeaderboardBtn.ForeColor = System.Drawing.Color.Lime;
+            LeaderboardBtn.Location = new Point(266, 287);
+            LeaderboardBtn.Name = "LeaderboardBtn";
+            LeaderboardBtn.Size = new Size(211, 46);
+            LeaderboardBtn.TabIndex = 10;
+            LeaderboardBtn.Text = "LEADERBOARD";
+            LeaderboardBtn.UseVisualStyleBackColor = false;
+            LeaderboardBtn.Click += LeaderboardBtn_Click;
+            // 
             // MainMenuForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(800, 450);
+            Controls.Add(LeaderboardBtn);
             Controls.Add(button1);
             Controls.Add(ProfileBtn);
             Controls.Add(SettingBtn);
@@ -164,5 +179,6 @@
         private Button SettingBtn;
         private Button ProfileBtn;
         private Button button1;
+        private Button LeaderboardBtn;
     }
 }

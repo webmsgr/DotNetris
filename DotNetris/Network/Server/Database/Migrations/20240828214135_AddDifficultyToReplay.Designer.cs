@@ -3,6 +3,7 @@ using DotNetris.Network.Server.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DotNetris.Network.Server.Database.Migrations
 {
     [DbContext(typeof(DotNetrisContext))]
-    partial class DotNetrisContextModelSnapshot : ModelSnapshot
+    [Migration("20240828214135_AddDifficultyToReplay")]
+    partial class AddDifficultyToReplay
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -337,7 +337,7 @@ public class Client
     /// <param name="id">The replay to download</param>
     /// <returns>The replay data</returns>
     /// <exception cref="Exception">On server error</exception>
-    public Replay DownloadReplay(int id)
+    public SerializedReplay DownloadReplay(int id)
     {
         ClientToServerMessage packet = new ClientToServerMessage
         {

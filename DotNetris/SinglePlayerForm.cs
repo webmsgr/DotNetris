@@ -7,18 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DotNetris.Network.Client;
+using DotNetris.Network.Protocol;
 
 namespace DotNetris
 {
     public partial class SinglePlayerSettingsForm : Form
     {
-        private MainMenuForm mainMenu;
 
-        public SinglePlayerSettingsForm(MainMenuForm mainMenu)
+        public SinglePlayerSettingsForm()
         {
-            InitializeComponent();
-            this.mainMenu = mainMenu;
+            InitializeComponent(); ;
             ExitBtn3.Click += new EventHandler(ExitBtn3_Click);
+            EnableReplayCheckbox.Enabled = ClientSingleton.IsLoggedIn;
+            EnableReplayCheckbox.Checked = ClientSingleton.IsLoggedIn;
         }
 
         private void DotNetrisLbl_Click(object sender, EventArgs e)
@@ -28,14 +30,7 @@ namespace DotNetris
 
         private void ExitBtn3_Click(object sender, EventArgs e)
         {
-            // Create an instance of the Main Menu form
-            MainMenuForm mainMenu = new MainMenuForm();
-
-            // Show the Main Menu form
-            mainMenu.Show();
-
-            // Close the current form
-            this.Close();
+            Close();
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -45,24 +40,57 @@ namespace DotNetris
 
         private void HardSettingsBtn_Click(object sender, EventArgs e)
         {
-            Game game = new Game(Difficulty.Hard);
-            Hide();
-            new SinglePlayerInGame(game).ShowDialog();
-            Show();
+            RunGame(Difficulty.Hard);
         }
 
         private void NormalSettingsBtn_Click(object sender, EventArgs e)
         {
-            Game game = new Game(Difficulty.Normal);
-            Hide();
-            new SinglePlayerInGame(game).ShowDialog();
-            Show();
+            RunGame(Difficulty.Normal);
         }
 
         private void EasySettingBtn_Click(object sender, EventArgs e)
         {
-            Game game = new Game(Difficulty.Easy);
-            game.PieceDropSpeed.Interval = Game.Tickrate;
+            RunGame(Difficulty.Easy);
+        }
+
+        private void RunGame(Difficulty dif)
+        {
+            if (EnableReplayCheckbox.Checked)
+            {
+                RunOnlineGame(dif);
+            }
+            else
+            {
+                RunOfflineGame(dif);
+            }
+        }
+
+        private void RunOnlineGame(Difficulty dif)
+        {
+            // fetch the game token
+            SignedGameSettings settings;
+            try
+            {
+                settings = ClientSingleton.client!.RequestGame(
+                    new GameSettings()
+                    {
+                        Difficulty = dif.ToNetwork()
+                    }
+                );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            Game game = new Game(settings);
+            Hide();
+            new SinglePlayerInGame(game).ShowDialog();
+            Show();
+        }
+        private void RunOfflineGame(Difficulty dif)
+        {
+            Game game = new Game(dif);
             Hide();
             new SinglePlayerInGame(game).ShowDialog();
             Show();

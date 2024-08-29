@@ -26,7 +26,8 @@ message Pong {
 message ReplayEntry {
   int32 id = 1;
   string username = 2;
-  int32 score = 3;
+  int64 score = 3;
+  Difficulty difficulty = 4;
 }
 
 message Leaderboard {
@@ -62,7 +63,7 @@ message ReplayListResponse {
 
 message DownloadReplayResponse {
   oneof Result {
-      Replay ok = 1;
+      SerializedReplay ok = 1;
       Failure fail = 2;
   }
 }

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DotNetris.Network.Client;
+using DotNetris.Network.Protocol;
 using static System.Formats.Asn1.AsnWriter;
 
 namespace DotNetris
@@ -72,7 +74,29 @@ namespace DotNetris
         private void OnLose(object sender, object? data)
         {
             GameTick.Enabled = false;
-            MessageBox.Show($"You lose! Your score: {game.Score:N0}");
+            if (game.IsOnline && game.SignedGameSettings != null) 
+            {
+                // we can upload this game
+                var res = MessageBox.Show($"You lose! Your score: {game.Score:N0}. Upload Replay?", "",
+                    MessageBoxButtons.YesNo);
+                if (res == DialogResult.Yes)
+                {
+                    // upload it
+                    try
+                    {
+                        MessageBox.Show(ClientSingleton.client!.UploadReplay(game.SignedGameSettings, [.. game.Replay]));
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show($"You lose! Your score: {game.Score:N0}");
+            }
+
             Close();
         }
 

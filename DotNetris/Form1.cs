@@ -5,7 +5,7 @@ namespace DotNetris
     public partial class MainMenuForm : Form
     {
         private MultiplayerForm form2;
-        private SinglePlayerSettingsForm settingsForm;
+        //private SinglePlayerSettingsForm settingsForm;
         private LoginRegisterForm loginRegisterForm;
         private ProfileForm frm;
         private SettingForm settingForm;
@@ -13,7 +13,7 @@ namespace DotNetris
         public MainMenuForm()
         {
             form2 = new MultiplayerForm(this);
-            settingsForm = new SinglePlayerSettingsForm(this);
+            //settingsForm = new SinglePlayerSettingsForm(this);
             loginRegisterForm = new LoginRegisterForm(this);
             frm = new ProfileForm(this);
             settingForm = new SettingForm(this);
@@ -41,6 +41,8 @@ namespace DotNetris
 
         private void MulitPlayerBtn_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Not yet implmented.");
+            return;
             form2.Show();
 
             this.Hide();
@@ -49,10 +51,10 @@ namespace DotNetris
 
         private void SinglePlayerBtn_Click(object sender, EventArgs e)
         {
-
-            settingsForm.Show();
-
             this.Hide();
+            new SinglePlayerSettingsForm().ShowDialog();
+
+            this.Show();
 
         }
 
@@ -122,6 +124,20 @@ namespace DotNetris
         private void button1_Click(object sender, EventArgs e)
         {
             new DebugForm().ShowDialog();
+        }
+
+        private void LeaderboardBtn_Click(object sender, EventArgs e)
+        {
+            if (!ClientSingleton.IsConnecteed)
+            {
+                MessageBox.Show("You must be connected to a server to view the leaderboards!");
+                return;
+            }
+            var form = new LeaderboardForm();
+            Hide();
+            form.ShowDialog();
+            Show();
+
         }
     }
 }

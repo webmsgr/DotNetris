@@ -37,6 +37,7 @@
             NormalModeDescriptLbl = new Label();
             HardModeDescriptLbl = new Label();
             ExitBtn3 = new Button();
+            EnableReplayCheckbox = new CheckBox();
             SuspendLayout();
             // 
             // DotNetrisSinglePlayerLbl
@@ -141,6 +142,16 @@
             ExitBtn3.Text = "Exit to Main Menu";
             ExitBtn3.UseVisualStyleBackColor = false;
             // 
+            // EnableReplayCheckbox
+            // 
+            EnableReplayCheckbox.AutoSize = true;
+            EnableReplayCheckbox.Location = new Point(352, 419);
+            EnableReplayCheckbox.Name = "EnableReplayCheckbox";
+            EnableReplayCheckbox.Size = new Size(99, 19);
+            EnableReplayCheckbox.TabIndex = 15;
+            EnableReplayCheckbox.Text = "Enable Replay";
+            EnableReplayCheckbox.UseVisualStyleBackColor = true;
+            // 
             // SinglePlayerSettingsForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -148,6 +159,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(800, 450);
+            Controls.Add(EnableReplayCheckbox);
             Controls.Add(ExitBtn3);
             Controls.Add(HardModeDescriptLbl);
             Controls.Add(NormalModeDescriptLbl);
@@ -159,6 +171,7 @@
             Name = "SinglePlayerSettingsForm";
             Text = "Single Player Settings";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -171,5 +184,6 @@
         private Label NormalModeDescriptLbl;
         private Label HardModeDescriptLbl;
         private Button ExitBtn3;
+        private CheckBox EnableReplayCheckbox;
     }
 }
