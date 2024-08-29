@@ -41,6 +41,8 @@ namespace DotNetris
 
         private void MulitPlayerBtn_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Not yet implmented.");
+            return;
             form2.Show();
 
             this.Hide();
