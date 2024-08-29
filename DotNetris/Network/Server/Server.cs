@@ -109,7 +109,7 @@ public class Server
             Console.WriteLine($"Replay had {inputCount} inputs with a score of {game.Score}");
             var entry = new DbReplay()
             {
-                RawReplay = next.Replay.Replay_.ToByteArray(),
+                RawReplay = new SerializedReplay(next.Replay).ToByteArray(),
                 Score = game.Score,
                 User = user,
                 RawDifficulty = (byte)DifficultyExt.FromNetwork(next.Replay.Tag.Settings.Difficulty)
@@ -333,18 +333,33 @@ public class Server
                        break;
                     }
 
-                    List<ReplayEntry> entries = await ctx.Replays
-                        .OrderByDescending(i => i.Score)
-                        .Take(new Range(start, end))
+                    IEnumerable<ReplayEntry> entries = (await ctx.Replays
+                            .OrderByDescending(i => i.RawDifficulty)
+                            .ThenByDescending(i => i.Score)
+                            .Skip(start)
+                            .Take(end - start)
+                            .Select(i => new { i.Id, i.User.Username, i.Difficulty, i.Score } )
+                            .ToListAsync())
                         .Select(i => new ReplayEntry()
                         {
                             Id = i.Id,
-                            Username = i.User.Username,
+                            Username = i.Username,
                             Difficulty = i.Difficulty.ToNetwork(),
                             Score = (long)i.Score
-                        })
-                        .ToListAsync();
+                        });
+                        
                     resp.LeaderboardResult = LeaderboardResponse.Success(entries);
+                    break;
+                case ClientToServerMessage.PacketOneofCase.DownloadReplay:
+                    var replay = await ctx
+                        .Replays
+                        .FirstOrDefaultAsync(i => i.Id == packet.DownloadReplay.Id, cancel.Token);
+                    if (replay == null)
+                    {
+                        resp.ReplayDownloadResult = DownloadReplayResponse.Failure("Replay not found");
+                        break;
+                    }
+                    resp.ReplayDownloadResult = DownloadReplayResponse.Success(replay.Replay);
                     break;
                 default:
                     throw new NotImplementedException($"Packet type not implemented: {packet.PacketCase}");

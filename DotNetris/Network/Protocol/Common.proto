@@ -24,3 +24,9 @@ message Replay {
   SignedGameSettings tag = 1;
   bytes replay = 2;
 }
+
+
+message SerializedReplay {
+	GameSettings settings = 1;
+	bytes replay = 2;
+}

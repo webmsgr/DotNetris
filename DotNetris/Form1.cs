@@ -123,5 +123,19 @@ namespace DotNetris
         {
             new DebugForm().ShowDialog();
         }
+
+        private void LeaderboardBtn_Click(object sender, EventArgs e)
+        {
+            if (!ClientSingleton.IsConnecteed)
+            {
+                MessageBox.Show("You must be connected to a server to view the leaderboards!");
+                return;
+            }
+            var form = new LeaderboardForm();
+            Hide();
+            form.ShowDialog();
+            Show();
+
+        }
     }
 }

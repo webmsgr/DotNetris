@@ -51,6 +51,20 @@ public class Game
         SignedGameSettings = settings;
     }
 
+    /// <summary>
+    /// Create a game from a set of game settings
+    /// </summary>
+    /// <param name="settings">The settings to use</param>
+    public Game(GameSettings settings)
+    {
+        Rand = new Random(settings.Seed);
+        Bag = new PiecePeekBag(new PieceBag(Rand));
+        CurrentPiece = Bag.Next();
+        PiecePosition = (3, 1);
+        Board = new GameBoard();
+        this.Difficulty = DifficultyExt.FromNetwork(settings.Difficulty);
+    }
+
 
     public bool IsOnline = false;
     public SignedGameSettings? SignedGameSettings = null;

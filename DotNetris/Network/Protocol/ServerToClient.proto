@@ -63,7 +63,7 @@ message ReplayListResponse {
 
 message DownloadReplayResponse {
   oneof Result {
-      Replay ok = 1;
+      SerializedReplay ok = 1;
       Failure fail = 2;
   }
 }

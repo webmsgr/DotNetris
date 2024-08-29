@@ -7,7 +7,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DotNetris.Network.Protocol;
 using DotNetris.Network.Server.Database.Models;
+using Google.Protobuf;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace DotNetris.Network.Server.Database.Models
@@ -37,10 +39,10 @@ namespace DotNetris.Network.Server.Database.Models
         }
 
         [NotMapped]
-        public Inputs[] Replay
+        public SerializedReplay Replay
         {
-            get => RawReplay.Cast<Inputs>().ToArray();
-            set => RawReplay = value.Cast<byte>().ToArray();
+            get => SerializedReplay.Parser.ParseFrom(RawReplay);
+            set => RawReplay = value.ToByteArray();
         }
     }
 
